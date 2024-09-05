@@ -1,0 +1,40 @@
+.dashboardSingleStateWidget{
+    margin: 10px;
+    height: 200px;
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.287);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 10px;
+
+    position: relative;
+}
+
+.dashboardSingleStateWidget:hover .hover-text {
+    visibility: visible;
+}
+
+.dashboardSingleStateWidget .hover-text {
+    width: 200px;
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.287);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    top: 155px;
+    font-size: 12px;
+    font-weight: 500;
+    transform: scale(0);
+}
+.hover-text{
+    transform: scale(1);
+    transition: transform 1.20s ease;
+}
+.dashboardSingleStateWidget:hover .hover-text{
+    transform: scale(1.3);
+}
