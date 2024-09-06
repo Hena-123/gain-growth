@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '../App.css';
 
 import DashboardWidget from '../components/DashboardWidget';

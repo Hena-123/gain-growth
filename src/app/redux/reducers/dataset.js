@@ -13,7 +13,7 @@ const initialState = {
 }
 
 
-export default function(state = initialState, action) {
+export default function dataset(state = initialState, action) {
     switch(action.type) {
         case GET_PATH:
             return action.payload !== undefined ? action.payload : state;

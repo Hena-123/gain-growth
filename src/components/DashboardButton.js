@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+// import { useContext } from "react";
 import './DashboardButton.css';
 
 const themes = {
@@ -30,7 +30,7 @@ export default function DashboardButton(props) {
 }
 
 function ThemedButton(args) {
-    const theme = useContext(ThemeContext);
+    // const theme = useContext(ThemeContext);
     return (
       // style={{ background: theme.background, color: theme.foreground }}
     <button 
