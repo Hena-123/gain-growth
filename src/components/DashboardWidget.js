@@ -42,6 +42,7 @@ function DashboardWidget(props) {
                     var investedFilteredData = filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined));
                     aggregatedData.map(element => {
                         drillDownRecords[element[props.config["groupBy"]]] = filterDataByValue(investedFilteredData, props.config["groupBy"], element[props.config["groupBy"]]);
+                        return "";
                     });
                     setDisplayData(filterData(drillDownRecords[props.filter.row_value], props.fieldsToDisplay));
                     break;
@@ -74,9 +75,11 @@ function DashboardWidget(props) {
                     })
                     setDisplayData(aggregatedData);
                     break;
+                    default:
+                        break;
             }
         }
-    }, [props.data, props.filter, props.year, props.fieldsToDisplay, props.config])
+    }, [props.data, props.filter, props.year, props.fieldsToDisplay, props.config, props.investField])
     let stylesForWidget = props.title !== undefined ? {height: '82%', marginTop: '15px', padding: '0 15px 25px 15px'} : {height: '100%', borderRadius: '10px'}
     return (
         <div className='dashboardWidget'>

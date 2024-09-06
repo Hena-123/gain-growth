@@ -13,7 +13,7 @@ export default function About() {
                     </Col>
                     <Col xl={5} style={{backgroundColor: 'orchid', textAlign: 'center'}}>
                         <div style={{borderRadius: "50%",width: '450px', height: '450px', backgroundColor: 'white'}}>
-                            <img src='./investment.jpg' style={{borderRadius: "50%",width: '400px', height: '400px'}}></img>
+                            <img alt="Not Found" src='./investment.jpg' style={{borderRadius: "50%",width: '400px', height: '400px'}}></img>
                         </div>
                     </Col>
                 </Row>
