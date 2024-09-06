@@ -55,11 +55,11 @@ function DashboardSingleStateWidget(props) {
                 setDisplayData(response.invested);
                 break;
             case 'TOTAL_MATURED_COUNT_OVER_YEAR':
-                var response = totalMaturedByField(props.data, props.config["fields"], props.config["groupBy"], props.config["sumWith"], (props.year !== undefined ? props.year : undefined));
+                response = totalMaturedByField(props.data, props.config["fields"], props.config["groupBy"], props.config["sumWith"], (props.year !== undefined ? props.year : undefined));
                 setDisplayData(response.count);
                 break;
             case 'TOTAL_GAIN_OVER_YEAR':
-                var response = totalGainByField(props.data, props.config["fields"], props.config["groupBy"], props.config["sumWith"], (props.year !== undefined ? props.year : undefined));
+                response = totalGainByField(props.data, props.config["fields"], props.config["groupBy"], props.config["sumWith"], (props.year !== undefined ? props.year : undefined));
                 setCount(response.count);
                 setDisplayData(response.gain);
                 break;
@@ -70,7 +70,7 @@ function DashboardSingleStateWidget(props) {
                 var maturedData = aggregateByField(props.data, maturityYearField, []);
                 var investedCount = 0;
                 var maturedCount = 0;
-                if(props.year==undefined){
+                if(props.year === undefined){
                     investedData.map(id => investedCount += id.count);
                     maturedData.map(id => maturedCount += id.count);
                 } else {
@@ -99,7 +99,7 @@ function DashboardSingleStateWidget(props) {
             <span>
                 {
                     isCurrencyField(props.config["name"])? numbertoCurrencyFormat(displayData): 
-                    (props.config["name"] == "INVESTED_VS_MATURED" ? 
+                    (props.config["name"] === "INVESTED_VS_MATURED" ? 
                         displayData[0] + " Vs " + displayData[1]
                         : displayData
                     )
@@ -118,7 +118,7 @@ function DashboardSingleStateWidget(props) {
             {
                 props.hoverInfo &&
                 <div className="hover-text">
-                    {(hoverInfo[props.config["name"]]) ? (hoverInfo[props.config["name"]]).replaceAll('{year}', props.year==undefined ? 'all': props.year) : ""}
+                    {(hoverInfo[props.config["name"]]) ? (hoverInfo[props.config["name"]]).replaceAll('{year}', props.year === undefined ? 'all': props.year) : ""}
                 </div>
             }
         </div>

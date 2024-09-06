@@ -46,7 +46,7 @@ function DashboardWidget(props) {
                     setDisplayData(filterData(drillDownRecords[props.filter.row_value], props.fieldsToDisplay));
                     break;
                 case 'INVESTED_THAT_MATURED_IN':
-                    var investedFilteredData = filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined));
+                    investedFilteredData = filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined));
                     setDisplayData(filterData(filterDataByValue(investedFilteredData, props.config["groupBy"][1], parseInt(props.filter.row_value)), props.fieldsToDisplay));
                     break;
                 default:
@@ -60,11 +60,11 @@ function DashboardWidget(props) {
                 case 'INVESTED_BY_ACCOUNT_HOLDER':
                 case 'INVESTED_BY_INVESTMENT_HOLDER':
                 case 'INVESTED_BY_BANK':
-                    var aggregatedData = aggregateByField(filterData(filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined)), props.config["fields"]), props.config["groupBy"], props.config["sumWith"]);
+                    aggregatedData = aggregateByField(filterData(filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined)), props.config["fields"]), props.config["groupBy"], props.config["sumWith"]);
                     setDisplayData(aggregatedData);
                     break;
                 case 'INVESTED_THAT_MATURED_IN':
-                    var aggregatedData = aggregateByField(filterData(filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined)), props.config["fields"]), props.config["groupBy"][1], props.config["sumWith"]);
+                    aggregatedData = aggregateByField(filterData(filterDataByValue(props.data, props.investField, (props.year !== undefined ? parseInt(props.year) : undefined)), props.config["fields"]), props.config["groupBy"][1], props.config["sumWith"]);
                     aggregatedData = aggregatedData.map(record => {
                         var displayData1 = {}
                         displayData1['count'] = record['count'];
@@ -97,7 +97,7 @@ function DashboardWidget(props) {
                                     firstField = firstField.replaceAll("_", " ").toLowerCase();
 
                                     // Only for the first header of table and Only to widgets, not drilldowns
-                                    if(i.toLowerCase()==firstField && props.filter == undefined){
+                                    if(i.toLowerCase() === firstField && props.filter === undefined){
                                         return (<th className="box-shadow">{i}</th>)
                                     }
                                     return (<th>{i}</th>)

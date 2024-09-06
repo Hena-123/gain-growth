@@ -3,16 +3,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
     background: -webkit-linear-gradient(left, #C33764, #1D2671);
     background: linear-gradient(to right, #C33764, #1D2671);

@@ -18,11 +18,9 @@ function Layout() {
                     <InputModal isModalOpen="true"></InputModal>
             }
             <div style={{textAlign: 'center', marginBottom: '30px'}}>
-                {/* <Container style={{ boxShadow: 'inset 0 0 50px rgba(255, 255, 255, 0.500)'}} fluid> */}
                 <Container style={{ boxShadow: 'rgba(255, 255, 255, 0.35) 0px -50px 20px -50px inset'}} fluid>
                     <Row>
                         <Col xl={1} style={{paddingLeft: '0', paddingRight: '0'}}>
-                            {/* <img src="/Gain_Growth.png" alt="logo" style={{width: '100%'}} /> */}
                             <ModalImage small={'/Gain_Growth.png'} large={'/Gain_Growth.png'} alt="Gain Growth"/>
                         </Col>
                         <Col xl={5} className='layoutTitle'>
