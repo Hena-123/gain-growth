@@ -1,3 +1,4 @@
+/* eslint-disable */
 import './Home.css';
 import {connect} from 'react-redux';
 
@@ -45,7 +46,7 @@ function Home(props) {
                 setIsModalOpen(true);
             }
         }
-    })
+    }, [props.fdData, props.fdMetadata, props.investmentData, props.investmentMetadata, props.updateFDs, props.updateInvestments, cookies.sheets])
 
     const scroll = useCallback(node => {
         if (node !== null) {

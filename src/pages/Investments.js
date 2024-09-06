@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '../App.css';
 
 import DashboardWidget from '../components/DashboardWidget';
@@ -78,7 +79,7 @@ function Investments(props) {
             document.getElementById(currentYear).click();
         }
 
-    }, [load, props.investmentData, props.investmentMetadata])
+    }, [load, props.investmentData, props.investmentMetadata, props.updateFDs, props.updateInvestments, cookies.sheets])
 
     const scroll = useCallback(node => {
         if (node !== null) {
