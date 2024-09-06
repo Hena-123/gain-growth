@@ -60,7 +60,7 @@ function InputModal(props) {
 
     };
     const tooltip = (
-        <Tooltip id="tooltip-custom-1" className='tooltip-custom-1'>
+        <Tooltip id="tooltip-custom-1">
             <div>
                 Enter the URL like:
                 https://docs.google.com/spreadsheets/d//SPREADSHEET_ID/edit?gid=SHEET_ID#gid=SHEET_ID

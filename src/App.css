@@ -1,5 +1,3 @@
-@import '~bootstrap-tooltip-custom-class/bootstrap-v4/tooltip/src/scss/_mixin.scss';
-
 .App {
   text-align: center;
 }
@@ -63,15 +61,11 @@
 .pageTitle {
   text-align: center;
   justify-content: center;
-  font-weight: 300px;
+  font-weight: 300;
   font-size: 30px;
   display: flex;
   align-items: center;
   color: white;
-}
-
-.tooltip-custom-1 {
-    @include tooltip-custom(#f2653c, #ffffff);
 }
 
 .footer {
@@ -103,8 +97,6 @@
 }
 
 .button:hover {
-  /* box-shadow: inset 10px 0 20px rgba(255, 255, 255, 0.287); */
-  /* box-shadow: rgba(255, 255, 255, 0.25) 0px 14px 28px, rgba(255, 255, 255, 0.22) 0px 10px 10px; */
   box-shadow: rgba(255, 255, 255, 0.56) 0px 0px 10px;
 }
 

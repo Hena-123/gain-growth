@@ -7,16 +7,12 @@
 }
 table{
     width:100%;
-    height:'auto';
+    height:auto;
     overflow-y: auto;
     overflow-x: auto;
     padding: 0 15px 25px 15px;
 }
-/* table th {
-    position: sticky;
-    top: 0px;
-} */
- .dashboardWidgetTitle{
+.dashboardWidgetTitle{
     font-size: 16px;
     padding-top: 13px;
     font-weight: 800;
@@ -29,7 +25,6 @@ table{
     border-radius: 10px 10px 0px 0px;
 }
 .dashboardWidget {
-    /* overflow-y: auto; */
     margin: 10px;
     height: 370px;
     padding: 0 0 10px 0;
@@ -37,7 +32,6 @@ table{
     border-radius: 10px;
 }
 .tbl-content{
-    /* height:300px; */
     height: 100%;
     margin-top: 0px;
     overflow-x:auto;
@@ -65,40 +59,8 @@ td{
     color: #fff;
 }
 
-/* demo styles */
-
-/* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-body{
-    background: -webkit-linear-gradient(left, #C33764, #1D2671);
-    background: linear-gradient(to right, #C33764, #1D2671);
-    font-family: 'Roboto', sans-serif;
-} */
-/* section{
-    margin: 10px;
-    height: 300px;
-    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.287);
-} */
-/* .tbl-header section th {
-    position: sticky;
-    top: 0;
-  } */
-
-/* for custom scrollbar for webkit browser*/
-
-/* ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-} 
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-} 
-::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-} */
-
 .readExcel {
     margin: 15px;
-    /* border: 1px solid rgba(255,255,255,0.3); */
 }
 
 #noData {
