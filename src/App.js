@@ -27,41 +27,49 @@ function App() {
         </Routes>
         <hr style={{color: 'white', backgroundColor: 'white', height: 1, borderColor : 'white', margin: '20px 0px 0px 0px', opacity: 0.4}}/>
         <footer className='footer'>
-          <div style={{padding: '60px'}}>
-            <Container>
+          <div className='footer-div'>
+            <Container className='footer-container'>
               <Row>
-                <Col xl={8}>
-                  <h1 style={{color: 'white', height: '100px'}}>
+                <Col xl={8} md={8} sm={8} xs={8}>
+                  <h1 className='footer-title'>
                     Track your wonderful betterment<br></br>using Gain Growth
                   </h1>
                 </Col>
-                <Col xl={4}>
+                <Col xl={4} md={4} sm={4} xs={4}>
                   <div className='footer-contact'>
-                    <ul style={{color: 'white', fontFamily: 'Plus Jakarta Sans', fontWeight: 400, fontSize: '1.25rem', lineHeight: '1.75rem'}}>
+                    <ul className='footer-ul'>
                       <li>
-                        <i class="bi bi-telephone-fill" ></i>
-                        <span style={{marginLeft: '1.15rem'}}>Contact</span>
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>Contact</span>
                       </li>
                       <li>
                         <i class="bi bi-envelope-at-fill"></i>
-                        <span style={{marginLeft: '1.15rem'}}>user@gmail.com</span>
+                        <span>user@gmail.com</span>
                       </li>
                       <li>
                         <i class="bi bi-geo-alt-fill"></i>
-                        <span style={{marginLeft: '1.15rem'}}>Ahmedabad, Gujarat.</span>
+                        <span>Ahmedabad, Gujarat.</span>
                       </li>
                     </ul>
                   </div>
                 </Col>
               </Row>
+              <Row style={{marginTop: '0px', marginBottom: '0px'}}>
+                <hr className='linebreak'/>
+              </Row>
+              <Row>
+                <Col xl={1} md={1} sm={1} xs={1}>
+                  <Link class="button" role="button" to="/about">
+                    <span class="text">About</span>
+                  </Link>
+                </Col>
+                <Col xl={1} md={1} sm={1} xs={1}>
+                  <Link class="button" role="button" to="/supports">
+                    <span class="text">Supports</span>
+                  </Link>
+                </Col>
+              </Row>
             </Container>
-            <hr style={{color: 'white', backgroundColor: 'white', height: 1, borderColor : 'white', margin: '20px 0px', opacity: 0.7  }}/>
-            <Link class="button" role="button" to="/about">
-              <span class="text">About</span>
-            </Link>
-            <Link class="button" role="button" to="/supports">
-              <span class="text">Supports</span>
-            </Link>
           </div>
         </footer>
       </BrowserRouter>

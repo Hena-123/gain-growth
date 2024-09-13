@@ -54,9 +54,54 @@ td{
     padding: 10px;
     text-align: center;
     vertical-align:middle;
-    font-weight: 300;
+    font-weight: 250;
     font-size: 14px;
     color: #fff;
+}
+
+@media (max-width: 480px) {
+    td{
+        font-size: 5px;
+        padding: 5px;
+    }
+    .tbl-header th{
+        font-size: 4px;
+        padding: 5px 10px;
+    }
+    .dashboardWidget{
+        height: 160px;
+        padding: 0 0 2px 0;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    td{
+        font-size: 8px;
+        padding: 6px;
+    }
+    .tbl-header th{
+        font-size: 6px;
+        padding: 6px 12px;
+    }
+    .dashboardWidget{
+        height: 185px;
+        padding: 0 0 2px 0;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 990px) {
+    td{
+        font-size: 10px;
+        padding: 8px;
+    }
+    .tbl-header th{
+        font-size: 8px;
+        padding: 8px 16px;
+    }
+    .dashboardWidget{
+        height: 275px;
+        padding: 0 0 5px 0;
+    }
 }
 
 .readExcel {

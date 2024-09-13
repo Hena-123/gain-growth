@@ -95,11 +95,11 @@ function DashboardSingleStateWidget(props) {
     }, [props.data, props.year, props.config])
 
     return (
-        <div className="dashboardSingleStateWidget" onClick={props.onClick} style={props.onClick !== undefined && props.onClick !== null ? {cursor: 'pointer', ...props.styles}: props.styles}>
+        <div className="dashboardSingleStateWidget" id={props.className} onClick={props.onClick} style={props.onClick !== undefined && props.onClick !== null ? {cursor: 'pointer'}: {}}>
             <span>
                 {
-                    isCurrencyField(props.config["name"])? numbertoCurrencyFormat(displayData): 
-                    (props.config["name"] === "INVESTED_VS_MATURED" ? 
+                    isCurrencyField(props.config["name"])? numbertoCurrencyFormat(displayData):
+                    (props.config["name"] === "INVESTED_VS_MATURED" ?
                         displayData[0] + " Vs " + displayData[1]
                         : displayData
                     )
@@ -110,7 +110,7 @@ function DashboardSingleStateWidget(props) {
                     </span>
                 }
                 { props.subscriptEnabled &&
-                    <sub style={{display: 'block', fontSize: 15, fontWeight: 500}}>
+                    <sub className="subscript">
                         {subscript[props.config["name"]]}
                     </sub>
                 }
