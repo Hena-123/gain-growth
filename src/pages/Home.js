@@ -20,7 +20,6 @@ function Home(props) {
 
     const [totalFDCountDrilldown, setTotalFDCountDrilldown] = useState(false);
     const [totalInvestmentCountDrilldown, setTotalInvestmentCountDrilldown] = useState(false);
-    const stateBubblesStyles = { borderRadius:'50%', height: '250px', width: '300px', margin: '30px 5px'}
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [cookies, setCookie] = useCookies(['sheets']);
@@ -73,9 +72,9 @@ function Home(props) {
                                 </div>
                             </Row>
                             <Row>
-                                <Col xl={3} id="TOTAL_FDS_COUNT">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_FDS_COUNT">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.fdData}
                                         config={props.fdMetadata['widgets']['TOTAL_FDS_COUNT']}
                                         onClick={() => {
@@ -87,9 +86,9 @@ function Home(props) {
                                         hoverInfo={false}>
                                     </DashboardSingleStateWidget>
                                 </Col>
-                                <Col xl={3} id="TOTAL_INVESTED_OVER_YEAR">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_INVESTED_OVER_YEAR">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.fdData}
                                         config={props.fdMetadata['widgets']['TOTAL_INVESTED_OVER_YEAR']}
                                         superscriptEnabled={false}
@@ -97,9 +96,9 @@ function Home(props) {
                                         hoverInfo={false}>
                                     </DashboardSingleStateWidget>
                                 </Col>
-                                <Col xl={3} id="TOTAL_GAIN_TILL_TODAY">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_GAIN_TILL_TODAY">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.fdData}
                                         config={props.fdMetadata['widgets']['TOTAL_GAIN_TILL_TODAY']}
                                         superscriptEnabled={false}
@@ -107,9 +106,9 @@ function Home(props) {
                                         hoverInfo={false}>
                                     </DashboardSingleStateWidget>
                                 </Col>
-                                <Col xl={3} id="TOTAL_FUTURE_GAIN">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_FUTURE_GAIN">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.fdData}
                                         config={props.fdMetadata['widgets']['TOTAL_FUTURE_GAIN']}
                                         superscriptEnabled={false}
@@ -132,9 +131,9 @@ function Home(props) {
                                     </Row>
                             }
                             <Row>
-                                <Col xl={3} id="TOTAL_INVESTMENTS_COUNT">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_INVESTMENTS_COUNT">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.investmentData}
                                         config={props.investmentMetadata['widgets']['TOTAL_INVESTMENTS_COUNT']}
                                         onClick={() => {
@@ -146,9 +145,9 @@ function Home(props) {
                                         hoverInfo={false}>
                                     </DashboardSingleStateWidget>
                                 </Col>
-                                <Col xl={3} id="TOTAL_INVESTED_OVER_YEAR">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_INVESTED_OVER_YEAR">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.investmentData}
                                         config={props.investmentMetadata['widgets']['TOTAL_INVESTED_OVER_YEAR']}
                                         superscriptEnabled={false}
@@ -156,9 +155,9 @@ function Home(props) {
                                         hoverInfo={false}>
                                     </DashboardSingleStateWidget>
                                 </Col>
-                                <Col xl={3} id="TOTAL_GAIN_TILL_TODAY">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_GAIN_TILL_TODAY">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.investmentData}
                                         config={props.investmentMetadata['widgets']['TOTAL_GAIN_TILL_TODAY']}
                                         superscriptEnabled={false}
@@ -166,9 +165,9 @@ function Home(props) {
                                         hoverInfo={false}>
                                     </DashboardSingleStateWidget>
                                 </Col>
-                                <Col xl={3} id="TOTAL_FUTURE_GAIN">
+                                <Col xl={3} md={3} sm={3} xs={3} id="TOTAL_FUTURE_GAIN">
                                     <DashboardSingleStateWidget
-                                        styles={stateBubblesStyles}
+                                        className="dashboardSingleStateWidget-bubble"
                                         data={props.investmentData}
                                         config={props.investmentMetadata['widgets']['TOTAL_FUTURE_GAIN']}
                                         superscriptEnabled={false}
