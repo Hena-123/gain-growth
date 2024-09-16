@@ -105,7 +105,7 @@ function DashboardSingleStateWidget(props) {
                     )
                 }
                 { props.superscriptEnabled && count !== -1 &&
-                    <span style={{verticalAlign: "super", fontSize: 15, fontWeight: 350}}>
+                    <span className="superscript">
                         (from {count})
                     </span>
                 }

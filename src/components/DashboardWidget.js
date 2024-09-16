@@ -91,7 +91,7 @@ function DashboardWidget(props) {
             }
             {
                 displayData !== undefined && displayData.length> 0 ?
-                <div className="table-responsive"  style={stylesForWidget}>
+                <div className={"table-responsive " + (props.title !== undefined ? "tableWidget" : "drilldown")}>
                     <table border="0">
                         <thead className="tbl-header" id={props.config["name"].toLowerCase()+'_header'}>
                             <tr>
