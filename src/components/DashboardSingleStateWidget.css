@@ -50,6 +50,12 @@
     font-weight: 500;
 }
 
+.superscript {
+    vertical-align: super;
+    font-size: 15px;
+    font-weight: 350;
+}
+
 @media (max-width: 480px) {
     .dashboardSingleStateWidget{
         font-size: 12px;
@@ -60,6 +66,9 @@
         margin: 15px 0px;
     }
     .subscript {
+        font-size: 6px;
+    }
+    .superscript {
         font-size: 6px;
     }
 }
@@ -75,6 +84,9 @@
     .subscript {
         font-size: 8px;
     }
+    .superscript {
+        font-size: 8px;
+    }
 }
 @media (min-width: 769px) and (max-width: 990px) {
     .dashboardSingleStateWidget{
@@ -86,6 +98,9 @@
         margin: 20px 5px;
     }
     .subscript {
+        font-size: 9px;
+    }
+    .superscript {
         font-size: 9px;
     }
 }

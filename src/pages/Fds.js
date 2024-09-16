@@ -133,7 +133,7 @@ function Fds(props) {
             :
             <Container>
                 <Row>
-                    <Col xl={4} style={{textAlign: 'left'}}>
+                    <Col xl={4} md={4} sm={4} xs={4} style={{textAlign: 'left'}}>
                         <div clas="dropdown">
                             <button className="button-17 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="year-dropdown">
                             </button>
@@ -156,10 +156,10 @@ function Fds(props) {
                             </ul>
                         </div>
                     </Col>
-                    <Col xl={4} className="pageTitle" >
+                    <Col xl={4} md={4} sm={4} xs={4}  className="pageTitle" >
                         <div>Your Fixed Deposits</div>
                     </Col>
-                    <Col xl={4} style={{textAlign: 'right'}}>
+                    <Col xl={4} md={4} sm={4} xs={4}  style={{textAlign: 'right'}}>
                         <DashboardButton theme="dark" buttonContent="Refresh Fixed Deposits" onClickMethod={() => {
                             // Reload from sheets from localstorage
                             console.log("sheets", props.sheets);
@@ -169,7 +169,7 @@ function Fds(props) {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xl={6} id="TOTAL_INVESTED_COUNT_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_INVESTED_COUNT_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -183,7 +183,7 @@ function Fds(props) {
                             hoverInfo={true}>
                         </DashboardSingleStateWidget>
                     </Col>
-                    <Col xl={6} id="TOTAL_MATURED_COUNT_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={6}  id="TOTAL_MATURED_COUNT_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -202,7 +202,7 @@ function Fds(props) {
                     totalInvestedCountOverYearDrilldown
                     &&
                         <Row className='bounceElement' ref={scroll} id="totalInvestedCountOverYearDrilldown">
-                            <Col xl={12}>
+                            <Col xl={12} md={12} sm={12} xs={12}>
                                 <DashboardWidget
                                     year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                     data={displayData}
@@ -217,7 +217,7 @@ function Fds(props) {
                     totalMaturedCountOverYearDrilldown
                     &&
                     <Row className='bounceElement' ref={scroll}>
-                        <Col xl={12}>
+                        <Col xl={12} md={12} sm={12} xs={12}>
                             <DashboardWidget
                                 year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                 data={displayData}
@@ -229,7 +229,7 @@ function Fds(props) {
                     </Row>
                 }
                 <Row>
-                    <Col xl={6} id="TOTAL_INVESTED_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_INVESTED_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -239,7 +239,7 @@ function Fds(props) {
                             hoverInfo={true}>
                         </DashboardSingleStateWidget>
                     </Col>
-                    <Col xl={6} id="TOTAL_GAIN_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_GAIN_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -251,7 +251,7 @@ function Fds(props) {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xl={6} id="INVESTED_BY_MONTH">
+                    <Col xl={6} md={6} sm={6} xs={6} id="INVESTED_BY_MONTH">
                         <DashboardWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -265,7 +265,7 @@ function Fds(props) {
                             }}>
                         </DashboardWidget>
                     </Col>
-                    <Col xl={6} id="INVESTED_BY_ACCOUNT_HOLDER">
+                    <Col xl={6} md={6} sm={6} xs={6} id="INVESTED_BY_ACCOUNT_HOLDER">
                         <DashboardWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -284,7 +284,7 @@ function Fds(props) {
                     investedByMonthDrilldown
                     &&
                     <Row className='bounceElement' ref={scroll}>
-                        <Col xl={12}>
+                        <Col xl={12} md={12} sm={12} xs={12}>
                             <DashboardWidget
                                 year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                 data={displayData}
@@ -300,7 +300,7 @@ function Fds(props) {
                     investedByAccountHolderDrilldown
                     &&
                     <Row className='bounceElement' ref={scroll}>
-                        <Col xl={12}>
+                        <Col xl={12} md={12} sm={12} xs={12}>
                             <DashboardWidget
                                 year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                 data={displayData}
@@ -313,7 +313,7 @@ function Fds(props) {
                     </Row>
                 }
                 <Row>
-                    <Col xl={6} id="INVESTED_THAT_MATURED_IN">
+                    <Col xl={6} md={6} sm={6} xs={6} id="INVESTED_THAT_MATURED_IN">
                         <DashboardWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -332,7 +332,7 @@ function Fds(props) {
                     investedThatMaturedInDrilldown
                     &&
                     <Row className='bounceElement' ref={scroll}>
-                        <Col xl={12}>
+                        <Col xl={12} md={12} sm={12} xs={12}>
                             <DashboardWidget
                                 year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                 data={displayData}
