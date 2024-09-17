@@ -63,7 +63,7 @@
     #dashboardSingleStateWidget-bubble {
         height: 95px;
         width: 95px;
-        margin: 15px 0px;
+        margin: 15px auto;
     }
     .subscript {
         font-size: 6px;
@@ -79,7 +79,7 @@
     #dashboardSingleStateWidget-bubble {
         height: 120px;
         width: 120px;
-        margin: 18px 0px;
+        margin: 18px auto;
     }
     .subscript {
         font-size: 8px;
