@@ -101,9 +101,9 @@ td{
         padding: 0 0 2px 0;
     }
     .dashboardWidgetTitle{
-        font-size: 9px;
-        padding-top: 7px;
-        padding-left: 13px;
+        font-size: 14px;
+        padding-top: 3px;
+        padding-left: 15px;
     }
     .tableWidget {
         margin-top: 7px;
@@ -112,12 +112,20 @@ td{
         margin-right: 4px;
     }
     .tableWidget th {
-        font-size: 6px;
+        font-size: 8px;
         padding: 4px 5px;
     }
     .tableWidget td{
-        font-size: 6px;
-        padding: 2px;
+        font-size: 8px;
+        padding: 5px;
+    }
+    .drilldown th {
+        font-size: 9px;
+        padding: 3px 13px;
+    }
+    .drilldown td {
+        font-size: 9px;
+        padding: 3px;
     }
 }
 
@@ -153,6 +161,14 @@ td{
         font-size: 8px;
         padding: 6px;
     }
+    .drilldown th {
+        font-size: 8px;
+        padding: 3px 13px;
+    }
+    .drilldown td {
+        font-size: 8px;
+        padding: 3px;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 990px) {
@@ -186,5 +202,13 @@ td{
     .tableWidget td{
         font-size: 8px;
         padding: 8px;
+    }
+    .drilldown th {
+        font-size: 8px;
+        padding: 3px 13px;
+    }
+    .drilldown td {
+        font-size: 8px;
+        padding: 3px;
     }
 }

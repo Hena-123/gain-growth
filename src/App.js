@@ -59,12 +59,12 @@ function App() {
               </Row>
               <Row>
                 <Col xl={1} md={1} sm={1} xs={1}>
-                  <Link class="button" role="button" to="/about">
+                  <Link class="footer-button" role="button" to="/about">
                     <span class="text">About</span>
                   </Link>
                 </Col>
                 <Col xl={1} md={1} sm={1} xs={1}>
-                  <Link class="button" role="button" to="/supports">
+                  <Link class="footer-button" role="button" to="/supports">
                     <span class="text">Supports</span>
                   </Link>
                 </Col>
