@@ -1,7 +1,28 @@
+.readExcel {
+    margin: 15px;
+}
+
+#noData {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    height: 300px;
+    justify-content: center;
+}
+
+.box-shadow {
+    box-shadow: inset 0 0 30px rgb(29, 38, 113, 0.3);
+}
+
+.drilldown {
+    height: 100%;
+    border-radius: 10px;
+}
 
 .table-responsive{
     height: 100%;
-    border-radius: 10px;
     overflow-y: auto;
     overflow-x: auto;
 }
@@ -58,6 +79,13 @@ td{
     font-size: 14px;
     color: #fff;
 }
+.tableWidget {
+    height: 82%;
+    margin-top: 15px;
+    padding: 0px 0px 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 @media (max-width: 480px) {
     td{
@@ -73,9 +101,23 @@ td{
         padding: 0 0 2px 0;
     }
     .dashboardWidgetTitle{
-        font-size: 7px;
+        font-size: 9px;
         padding-top: 7px;
         padding-left: 13px;
+    }
+    .tableWidget {
+        margin-top: 7px;
+        padding: 0px 0px 7px;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+    .tableWidget th {
+        font-size: 6px;
+        padding: 4px 5px;
+    }
+    .tableWidget td{
+        font-size: 6px;
+        padding: 2px;
     }
 }
 
@@ -93,9 +135,23 @@ td{
         padding: 0 0 2px 0;
     }
     .dashboardWidgetTitle{
-        font-size: 8px;
+        font-size: 10px;
         padding-top: 7px;
         padding-left: 17px;
+    }
+    .tableWidget {
+        margin-top: 10px;
+        padding: 0px 0px 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .tableWidget th {
+        font-size: 8px;
+        padding: 4px 5px;
+    }
+    .tableWidget td{
+        font-size: 8px;
+        padding: 6px;
     }
 }
 
@@ -113,36 +169,22 @@ td{
         padding: 0 0 5px 0;
     }
     .dashboardWidgetTitle{
-        font-size: 10px;
+        font-size: 12px;
         padding-top: 13px;
         padding-left: 20px;
     }
-}
-
-.readExcel {
-    margin: 15px;
-}
-
-#noData {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 40px;
-    height: 300px;
-    justify-content: center;
-}
-
-.box-shadow {
-    box-shadow: inset 0 0 30px rgb(29, 38, 113, 0.3);
-}
-
-.drilldown {
-    height: 100%;
-    border-radius: 10px;
-}
-.tableWidget {
-    height: 82%;
-    margin-top: 15px;
-    padding: 0px 15px 25px 15px;
+    .tableWidget {
+        margin-top: 13px;
+        padding: 0px 0px 13px;
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .tableWidget th {
+        font-size: 8px;
+        padding: 5px 10px;
+    }
+    .tableWidget td{
+        font-size: 8px;
+        padding: 8px;
+    }
 }
