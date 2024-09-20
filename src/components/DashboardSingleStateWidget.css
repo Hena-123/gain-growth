@@ -18,32 +18,6 @@
     margin: 30px 5px;
 }
 
-.dashboardSingleStateWidget:hover .hover-text {
-    visibility: visible;
-}
-
-.dashboardSingleStateWidget .hover-text {
-    width: 200px;
-    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.287);
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    padding: 2px 0;
-
-    position: absolute;
-    top: 155px;
-    font-size: 12px;
-    font-weight: 500;
-    transform: scale(0);
-}
-.hover-text{
-    transform: scale(1);
-    transition: transform 1.20s ease;
-}
-.dashboardSingleStateWidget:hover .hover-text{
-    transform: scale(1.3);
-}
-
 .subscript {
     display: block;
     font-size: 13.5px;
@@ -58,31 +32,37 @@
 
 @media (max-width: 480px) {
     .dashboardSingleStateWidget{
-        font-size: 12px;
+        font-size: 23px;
     }
     #dashboardSingleStateWidget-bubble {
-        height: 95px;
-        width: 95px;
-        margin: 15px 0px;
+        font-size: 24px;
+        width: 75%;
+        margin: 15px auto;
     }
-    .subscript {
-        font-size: 6px;
+    #dashboardSingleStateWidget-bubble .subscript {
+        font-size: 10px;
+    }
+    .dashboardSingleStateWidget .subscript {
+        font-size: 10px;
     }
     .superscript {
         font-size: 6px;
     }
 }
 @media (min-width: 481px) and (max-width: 768px) {
-    .dashboardSingleStateWidget{
-        font-size: 18px;
+    .dashboardSingleStateWidget {
+        font-size: 25px;
     }
     #dashboardSingleStateWidget-bubble {
-        height: 120px;
-        width: 120px;
-        margin: 18px 0px;
+        font-size: 26px;
+        width: 60%;
+        margin: 18px auto;
     }
-    .subscript {
+    #dashboardSingleStateWidget-bubble .subscript {
         font-size: 8px;
+    }
+    .dashboardSingleStateWidget .subscript {
+        font-size: 11px;
     }
     .superscript {
         font-size: 8px;
@@ -90,17 +70,20 @@
 }
 @media (min-width: 769px) and (max-width: 990px) {
     .dashboardSingleStateWidget{
-        font-size: 20px;
+        font-size: 28px;
     }
     #dashboardSingleStateWidget-bubble {
-        height: 150px;
-        width: 150px;
-        margin: 20px 5px;
+        font-size: 28px;
+        width: 80%;
+        margin: 20px auto;
     }
-    .subscript {
-        font-size: 9px;
+    #dashboardSingleStateWidget-bubble .subscript {
+        font-size: 10px;
+    }
+    .dashboardSingleStateWidget .subscript {
+        font-size: 12px;
     }
     .superscript {
-        font-size: 9px;
+        font-size: 12px;
     }
 }

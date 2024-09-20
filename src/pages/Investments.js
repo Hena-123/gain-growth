@@ -135,7 +135,7 @@ function Investments(props) {
             :
             <Container>
                 <Row>
-                    <Col xl={4} md={4} sm={4} xs={4} style={{textAlign: 'left'}}>
+                    <Col xl={2} md={4} sm={4} xs={3} style={{textAlign: 'left', padding: '0px'}}>
                     <div class="dropdown">
                         <button class="button-17 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="year-dropdown">
                             Select Year
@@ -159,19 +159,21 @@ function Investments(props) {
                         </ul>
                     </div>
                     </Col>
-                    <Col xl={4} md={4} sm={4} xs={4} className="pageTitle">
+                    <Col xl={8} md={4} sm={4} xs={6} className="pageTitle">
                         <div>Your Investments</div>
                     </Col>
-                    <Col xl={4} md={4} sm={4} xs={4} style={{textAlign: 'right'}} >
-                        <DashboardButton id="refresh" theme="dark" buttonContent="Refresh Investments" onClickMethod={() => {
+                    <Col xl={2} md={4} sm={4} xs={3} style={{textAlign: 'right', padding: '0px'}} >
+                        <button className="button-17" id="refresh_button" onClick={() => {
                             // Reload from sheets from localstorage
                             loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments);
                             setLoad(true);
-                        }}></DashboardButton>
+                        }}>
+                            <i class="bi bi-arrow-clockwise"></i>Refresh Investments
+                        </button>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_INVESTED_COUNT_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_INVESTED_COUNT_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -185,7 +187,7 @@ function Investments(props) {
                             hoverInfo={true}>
                         </DashboardSingleStateWidget>
                     </Col>
-                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_MATURED_COUNT_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_MATURED_COUNT_OVER_YEAR">
                         <DashboardSingleStateWidget 
                             year={searchParams.has('year') ? searchParams.get('year'): undefined} 
                             data={displayData} 
@@ -232,7 +234,7 @@ function Investments(props) {
                     </Row>
                 }
                 <Row>
-                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_INVESTED_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_INVESTED_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined} 
                             data={displayData}
@@ -242,7 +244,7 @@ function Investments(props) {
                             hoverInfo={true}>
                         </DashboardSingleStateWidget>
                     </Col>
-                    <Col xl={6} md={6} sm={6} xs={6} id="TOTAL_GAIN_OVER_YEAR">
+                    <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_GAIN_OVER_YEAR">
                         <DashboardSingleStateWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -254,7 +256,7 @@ function Investments(props) {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xl={6} md={6} sm={6} xs={6} id="INVESTED_BY_MONTH">
+                    <Col xl={6} md={6} sm={6} xs={12} id="INVESTED_BY_MONTH">
                         <DashboardWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -268,7 +270,7 @@ function Investments(props) {
                             }}
                         ></DashboardWidget>
                     </Col>
-                    <Col xl={6} md={6} sm={6} xs={6} id="INVESTED_BY_INVESTMENT_HOLDER">
+                    <Col xl={6} md={6} sm={6} xs={12} id="INVESTED_BY_INVESTMENT_HOLDER">
                         <DashboardWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}
@@ -316,7 +318,7 @@ function Investments(props) {
                     </Row>
                 }
                 <Row>
-                    <Col xl={6} md={6} sm={6} xs={6} id="INVESTED_THAT_MATURED_IN">
+                    <Col xl={6} md={6} sm={6} xs={12} id="INVESTED_THAT_MATURED_IN">
                         <DashboardWidget
                             year={searchParams.has('year') ? searchParams.get('year'): undefined}
                             data={displayData}

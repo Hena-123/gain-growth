@@ -8,19 +8,6 @@ function DashboardSingleStateWidget(props) {
     const [displayData, setDisplayData] = useState([]);
     const [count, setCount] = useState(-1);
 
-    var hoverInfo = {
-        "TOTAL_FDS_COUNT": "opened in year, {year}",
-        "TOTAL_INVESTMENTS_COUNT": "opened in year, {year}",
-
-        "TOTAL_INVESTED_COUNT_OVER_YEAR": "in year, {year}",
-        "TOTAL_MATURED_COUNT_OVER_YEAR": "in year, {year}",
-        "TOTAL_GAIN_OVER_YEAR": "would got from year, {year}",
-        "TOTAL_INVESTED_OVER_YEAR": "in year, {year}",
-
-        "TOTAL_MATURED_OVER_YEAR": "in year, {year}",
-        "INVESTED_VS_MATURED": "count in year, {year}"
-    }
-
     var subscript = {
         "TOTAL_FDS_COUNT": "Total FDs",
         "TOTAL_INVESTMENTS_COUNT": "Total Investments",
@@ -115,12 +102,6 @@ function DashboardSingleStateWidget(props) {
                     </sub>
                 }
             </span>
-            {
-                props.hoverInfo &&
-                <div className="hover-text">
-                    {(hoverInfo[props.config["name"]]) ? (hoverInfo[props.config["name"]]).replaceAll('{year}', props.year === undefined ? 'all': props.year) : ""}
-                </div>
-            }
         </div>
     );
 }
