@@ -63,15 +63,21 @@
   margin-right: 10px;
 }
 
+.titlebar-button {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
 @media (max-width: 480px) {
   .titlebar {
     margin-bottom: 20px;
   }
   .layoutTitle {
-    font-size: 12px;
+    font-size: 25px;
   }
   .button-shadow {
-    font-size: 6px;
+    font-size: 9px;
     padding: 6px 12px;
   }
   .update-sheet {
@@ -81,6 +87,12 @@
   .update-sheet i {
     margin-right: 2px;
   }
+  .titlebar-button {
+    justify-content: center;
+  }
+  .titlebar-button .button-shadow {
+    margin: 0px 16px;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -88,10 +100,10 @@
     margin-bottom: 22px;
   }
   .layoutTitle {
-    font-size: 16px;
+    font-size: 30px;
   }
   .button-shadow {
-    font-size: 7px;
+    font-size: 12px;
     padding: 8px 14px;
   }
   .update-sheet {
@@ -101,6 +113,12 @@
   .update-sheet i {
     margin-right: 3px;
   }
+  .titlebar-button {
+    justify-content: center;
+  }
+  .titlebar-button .button-shadow {
+    margin: 0px 20px;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 990px) {
@@ -108,14 +126,14 @@
     margin-bottom: 27px;
   }
   .layoutTitle {
-    font-size: 30px;
+    font-size: 40px;
   }
   .button-shadow {
-    font-size: 9px;
+    font-size: 12px;
     padding: 12px 20px;
   }
   .update-sheet {
-    font-size: 9px;
+    font-size: 12px;
     padding: 10px 15px;
   }
   .update-sheet i {
