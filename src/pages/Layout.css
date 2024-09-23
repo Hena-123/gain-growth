@@ -81,7 +81,7 @@
     padding: 6px 12px;
   }
   .update-sheet {
-    font-size: 6px;
+    font-size: 8px;
     padding: 6px 8px;
   }
   .update-sheet i {
@@ -91,7 +91,7 @@
     justify-content: center;
   }
   .titlebar-button .button-shadow {
-    margin: 0px 16px;
+    margin: 0px 14px;
   }
 }
 
