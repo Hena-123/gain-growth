@@ -12,7 +12,6 @@ import { useCookies } from "react-cookie";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button'
 import { OverlayTrigger } from 'react-bootstrap';
 import Tooltip from 'react-bootstrap/Tooltip';
 
@@ -102,7 +101,7 @@ function InputModal(props) {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="button-17" type="submit" >Save</Button>
+                    <button className="button-17" type="submit" >Save</button>
                 </Modal.Footer>
             </Form>
         </Modal>
