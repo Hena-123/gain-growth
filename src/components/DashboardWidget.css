@@ -75,7 +75,7 @@ td{
     padding: 10px;
     text-align: center;
     vertical-align:middle;
-    font-weight: 250;
+    font-weight: 300;
     font-size: 14px;
     color: #fff;
 }
@@ -112,19 +112,23 @@ td{
         margin-right: 4px;
     }
     .tableWidget th {
-        font-size: 8px;
+        font-size: 10px;
+        font-weight: 600;
         padding: 4px 5px;
     }
     .tableWidget td{
-        font-size: 8px;
+        font-size: 10px;
+        font-weight: 400;
         padding: 5px;
     }
     .drilldown th {
-        font-size: 9px;
+        font-size: 10px;
+        font-weight: 600;
         padding: 3px 13px;
     }
     .drilldown td {
-        font-size: 9px;
+        font-size: 10px;
+        font-weight: 400;
         padding: 3px;
     }
 }
@@ -154,19 +158,23 @@ td{
         margin-right: 5px;
     }
     .tableWidget th {
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 500;
         padding: 4px 5px;
     }
     .tableWidget td{
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 400;
         padding: 6px;
     }
     .drilldown th {
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 500;
         padding: 3px 13px;
     }
     .drilldown td {
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 400;
         padding: 3px;
     }
 }
@@ -196,19 +204,23 @@ td{
         margin-right: 7px;
     }
     .tableWidget th {
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 500;
         padding: 5px 10px;
     }
     .tableWidget td{
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 400;
         padding: 8px;
     }
     .drilldown th {
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 500;
         padding: 3px 13px;
     }
     .drilldown td {
-        font-size: 8px;
+        font-size: 9px;
+        font-weight: 400;
         padding: 3px;
     }
 }
