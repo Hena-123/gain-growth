@@ -7,7 +7,7 @@ export default function Supports() {
 
     const scroll = useCallback(node => {
         if(node != null) {
-            node.scrollIntoView({behavior: "smooth", block: "center", inline: "center" });
+            node.scrollIntoView(true);
         }
     }, []);
 
