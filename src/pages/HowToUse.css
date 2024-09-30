@@ -1,0 +1,83 @@
+.about {
+    color: white;
+    font-weight: 300;
+}
+.about ul li {
+    font-size: 16px;
+    margin: 15px 0px;
+}
+.about ul li ol li{
+    font-size: 14px;
+}
+.about ul li ol li ul li{
+    font-size: 12px;
+}
+
+.img {
+    border-radius: 50%;
+    max-width: 100%;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.287);
+}
+
+.release_version {
+    font-size: 12px;
+}
+
+.about_images {
+    border-radius: 10px;
+    height: max-content;
+    width: max-content;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 40);
+}
+
+.image {
+    padding: 20px 20px;
+    height: 100px;
+}
+#SheetURL {
+    display: none;
+}
+
+.about_images #SheetAccess{
+    height: 180px;
+}
+.about_images #SheetURL{
+    height: 120px;
+}
+
+@media (max-width: 480px) {
+    .about_images #SheetAccess{
+        height: 120px;
+    }
+    .about_images #SheetURL{
+        height: 90px;
+        display: block;
+    }
+    #SheetURL990 {
+        display: none;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    .about_images #SheetAccess{
+        height: 155px;
+    }
+    .about_images #SheetURL{
+        height: 110px;
+        display: block;
+    }
+    #SheetURL990 {
+        display: none;
+    }
+}
+@media (min-width: 769px) and (max-width: 990px) {
+    .about_images #SheetAccess{
+        height: 180px;
+    }
+    .about_images #SheetURL{
+        display: none;
+    }
+    #SheetURL990 {
+        display: block;
+        height: 85px;
+    }
+}

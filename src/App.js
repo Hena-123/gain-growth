@@ -5,7 +5,7 @@ import Fds from './pages/Fds';
 import Investments from './pages/Investments';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
-import About from './pages/About';
+import HowToUse from './pages/HowToUse';
 import Supports from './pages/Supports';
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -21,7 +21,7 @@ function App() {
           <Route index path="/" element={<Home />}></Route>
           <Route path="/fds" element={<Fds />}></Route>
           <Route path="/investments" element={<Investments />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/howtouse" element={<HowToUse />}></Route>
           <Route path="/supports" element={<Supports />}></Route>
           </Route>
         </Routes>
@@ -58,12 +58,12 @@ function App() {
                 <hr className='linebreak'/>
               </Row>
               <Row>
-                <Col xl={1} md={1} sm={1} xs={1}>
-                  <Link class="footer-button" role="button" to="/about">
-                    <span class="text">About</span>
+                <Col xl={2} md={3} sm={3} xs={4}>
+                  <Link class="footer-button" role="button" to="/howtouse">
+                    <span class="text">How to use?</span>
                   </Link>
                 </Col>
-                <Col xl={1} md={1} sm={1} xs={1}>
+                <Col xl={2} md={3} sm={3} xs={4}>
                   <Link class="footer-button" role="button" to="/supports">
                     <span class="text">Supports</span>
                   </Link>
