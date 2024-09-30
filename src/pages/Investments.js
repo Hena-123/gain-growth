@@ -168,7 +168,7 @@ function Investments(props) {
                             loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments);
                             setLoad(true);
                         }}>
-                            <i class="bi bi-arrow-clockwise"></i>Refresh Investments
+                            <i class="bi bi-arrow-clockwise"></i>
                         </button>
                     </Col>
                 </Row>

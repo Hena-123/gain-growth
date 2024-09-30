@@ -77,7 +77,8 @@
 }
 
 #refresh_button i {
-  font-size: 15px;
+  font-size: 20px;
+  -webkit-text-stroke: 1.5px;
   margin: 5px;
 }
 
@@ -187,6 +188,7 @@
   #refresh_button i {
     font-size: 10px;
     margin: 1px;
+    -webkit-text-stroke: 1px;
   }
   .footer-button {
     font-size: 8px;
@@ -222,7 +224,7 @@
     font-size: 7px;
   }
   #refresh_button i {
-    font-size: 8px;
+    font-size: 12px;
     margin: 2px;
   }
   .footer-button {
@@ -259,7 +261,7 @@
     font-size: 9px;
   }
   #refresh_button i {
-    font-size: 10px;
+    font-size: 16px;
     margin: 3px;
   }
   .footer-button {

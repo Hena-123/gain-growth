@@ -165,7 +165,7 @@ function Fds(props) {
                             loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments);
                             setLoad(true);
                         }}>
-                            <i class="bi bi-arrow-clockwise"></i>Fixed Deposits
+                            <strong><i class="bi bi-arrow-clockwise"></i></strong>
                         </button>
                     </Col>
                 </Row>
