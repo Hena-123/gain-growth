@@ -5,8 +5,6 @@ import {connect} from 'react-redux';
 import { useEffect, useState, useCallback } from 'react';
 import { useCookies } from "react-cookie";
 import * as XLSX from 'xlsx';
-import axios from 'axios';
-
 import DashboardWidget from '../components/DashboardWidget';
 import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
 import InputModal from '../components/InputModal';
@@ -202,46 +200,22 @@ function Home(props) {
 }
 
 export function loadDataFromSheets(sheets, updateFDs, updateInvestments){
-    sheets.forEach(async sheet => {
-        // fetch(sheet['url'])
-        //     // Convert to ArrayBuffer.
-        //     .then((res) => res.arrayBuffer())
-        //     .then((data) => {
-        //         const wb = XLSX.read(data, {type: "buffer"});
-        //         const wsname = wb.SheetNames[0];
-        //         const ws = wb.Sheets[wsname];
-        //         var json = XLSX.utils.sheet_to_json(ws);
-        //         console.log("\nON HOME ", sheet['sheetname'] ," Data: ", json);
-        //         if(sheet['sheetname'] === 'Fds') {
-        //             updateFDs({'data': json, 'fields': extractFields(json)});
-        //         } else if(sheet['sheetname'] === 'Investments') {
-        //             updateInvestments({'data': json, 'fields': extractFields(json)});
-        //         }
-        //     })
-        try {
-            const response = await axios.get('https://7c270644-e8b2-4114-8dcf-ba98f89f3987.e1-us-cdp-2.choreoapps.dev/fetch-excel', {
-              responseType: 'blob',
-            });
-
-            const blob = new Blob([response.data], { type: response.headers['content-type'] });
-            const reader = new FileReader();
-            reader.onload = (e) => {
-              const binaryStr = e.target.result;
-              const workbook = XLSX.read(binaryStr, { type: 'binary' });
-
-              // Assuming the first sheet is the one we want to read
-              const firstSheetName = workbook.SheetNames[0];
-              const worksheet = workbook.Sheets[firstSheetName];
-
-              // Convert the data to JSON format
-              const jsonData = XLSX.utils.sheet_to_json(worksheet);
-              setData(jsonData);
-            };
-
-            reader.readAsBinaryString(blob);
-          } catch (error) {
-            console.error('Error fetching Excel file:', error);
-          }
+    sheets.forEach(sheet => {
+        fetch(sheet['url'])
+            // Convert to ArrayBuffer.
+            .then((res) => res.arrayBuffer())
+            .then((data) => {
+                const wb = XLSX.read(data, {type: "buffer"});
+                const wsname = wb.SheetNames[0];
+                const ws = wb.Sheets[wsname];
+                var json = XLSX.utils.sheet_to_json(ws);
+                console.log("\nON HOME ", sheet['sheetname'] ," Data: ", json);
+                if(sheet['sheetname'] === 'Fds') {
+                    updateFDs({'data': json, 'fields': extractFields(json)});
+                } else if(sheet['sheetname'] === 'Investments') {
+                    updateInvestments({'data': json, 'fields': extractFields(json)});
+                }
+            })
     })
 }
 
