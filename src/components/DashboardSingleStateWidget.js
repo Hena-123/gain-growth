@@ -82,7 +82,7 @@ function DashboardSingleStateWidget(props) {
     }, [props.data, props.year, props.config])
 
     return (
-        <div className="dashboardSingleStateWidget" id={props.className} onClick={props.onClick} style={props.onClick !== undefined && props.onClick !== null ? {cursor: 'pointer'}: {}}>
+        <div className="dashboardSingleStateWidget" id={props.className} onClick={props.onClick} style={props.hasDrilldown ? {cursor: 'pointer'}: {}}>
             <span>
                 {
                     isCurrencyField(props.config["name"])? numbertoCurrencyFormat(displayData):

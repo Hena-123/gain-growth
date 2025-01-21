@@ -12,22 +12,39 @@ export default function HowToUse() {
     }, []);
 
     return(
-        <div className='about' ref={scroll}>
+        <div className='howToUse' ref={scroll}>
             <Container>
                 <Row>
                     <Col xl={12}>
-                        <div>
+                        <div id='howToUse'>
                             <h1>How to use Gain-Growth?</h1>
                             <ul>
                                 <li>
                                     To get max out of it, you need to follow below steps :
                                     <ol>
                                         <li>
-                                            First create one <i class="bi bi-google" style={{color: '#4dd571'}}></i> google spreadsheet which contains your investment records and <u><b>provide public access for that spreadsheet.</b></u>
+                                            First create one <i className="bi bi-google" style={{color: '#4dd571'}}></i> google spreadsheet which contains your fds and investment records.
                                         </li>
-                                        <div class='about_images'>
-                                            <img id='SheetAccess' src='/SheetAccess.png' class="image"></img>
-                                        </div>
+                                        <li>
+                                            Add <u><b>Export Data to Github</b></u> plugin to the spreadsheet using below steps.
+                                            <ul>
+                                                <li>
+                                                    Download the File: <a>file</a>
+                                                </li>
+                                                <li>
+                                                    Open Google Apps Script from Extensions as shown below
+                                                    <div class='about_images'>
+                                                        <img id='ExtensionAppScript' src='./images/ExtensionAppScript.png' className="image" alt="ExtensionAppScript Not Found"></img>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    Add the code of the file to the editor shown in Google Apps Script and give a name to Google App Script Project and Save it
+                                                    <div class='about_images'>
+                                                        <img id='SaveAppScript' src='./images/SaveAppScript.png' className="image" alt="SaveAppScript Not Found"></img>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <li>
                                             Your spreadsheet <u><b>must have sheet with name Fds or Investments</b></u>, othervise you will see no data.
                                         </li>
@@ -48,18 +65,18 @@ export default function HowToUse() {
                                             </ul>
                                         </li>
                                         <li>
-                                            Copy the sheet link available in URL and use it in Edit Sheet-URL Form.
+                                            Now, just add your records in Fds and Investments Sheet and click on Export Data to Github plugin.
                                         </li>
                                         <div class='about_images'>
-                                            <img id='SheetURL' src='/SheetURL_<480.png' class='image'></img>
-                                        </div>
-                                        <div class='about_images'>
-                                            <img id='SheetURL990' src='/SheetURL_>990.png' class='image'></img>
+                                            <img id='ExportDataToGithubPlugin' src='./images/ExportDataToGithubPlugin.png' className="image" alt="ExportDataToGithubPlugin Not Found"></img>
                                         </div>
                                     </ol>
                                 </li>
                                 <li>
-                                    Now you will be able to see statics on the dashboard.
+                                    Now you will be able to see data analytics on the Home page.
+                                </li>
+                                <li className='highlight'>
+                                    Remember: every time you made some changes in your google spreadsheet, you need to export your data using <u><b>Export Data To Github</b></u> plugin.
                                 </li>
                             </ul>
                         </div>

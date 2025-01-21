@@ -1,45 +1,80 @@
-import {GET_FDS, UPDATE_FDS} from '../actionTypes';
-import {GET_INVESTMENTS, UPDATE_INVESTMENTS} from '../actionTypes';
-import {GET_PATH, UPDATE_PATH} from '../actionTypes';
+import {GET_FDS, UPDATE_FDS, GET_INVESTMENTS, UPDATE_INVESTMENTS, CLEANUP_ALL, GET_DATA_AVAILABILITY, SET_DATA_AVAILABILITY, GET_INVALIDSHEET, SET_INVALIDSHEET} from '../actionTypes';
 import {initialStateFDMetadata} from '../../../utils/const/FDConst';
 import {initialStateInvestmentMetadata} from '../../../utils/const/InvestmentConst';
 
 const initialState = {
-    'sheets': [],
-    'fdData': [],
-    'fdMetadata': {"widgets": initialStateFDMetadata, "fields": []},
-    'investmentData': [],
-    'investmentMetadata': {'widgets': initialStateInvestmentMetadata, 'fields': []}
+    'fds': {
+        'fdData': [],
+        'fdMetadata': {"widgets": initialStateFDMetadata, "fields": []}
+    },
+    'investments': {
+        'investmentData': [],
+        'investmentMetadata': {'widgets': initialStateInvestmentMetadata, 'fields': []}
+    },
+    'isDataAvailable': false,
+    'invalidSheet': false,
+    'updatedAt': 0
 }
 
 
 export default function dataset(state = initialState, action) {
     switch(action.type) {
-        case GET_PATH:
-            return action.payload !== undefined ? action.payload : state;
-        case UPDATE_PATH:
-            return {...state, 'sheets': action.payload.sheets};
         case GET_FDS:
             return action.payload !== undefined ? action.payload : state;
+        case GET_DATA_AVAILABILITY:
+            return action.payload !== undefined ? action.payload : state;
+        case SET_DATA_AVAILABILITY:
+            return {
+                ...state,
+                'isDataAvailable': action.payload
+            };
+        case GET_INVALIDSHEET:
+            return action.payload !== undefined ? action.payload : state;
+        case SET_INVALIDSHEET:
+            console.log("invalid sheet dispatch: ", action.payload);
+            return {
+                ...state,
+                'invalidSheet': action.payload
+            };
         case UPDATE_FDS:
             return {
                 ...state,
-                'fdData': action.payload.data,
-                'fdMetadata': {
-                    'widgets': initialStateFDMetadata,
-                    'fields': action.payload.fields
-                }
+                'fds': {
+                    'fdData': action.payload.data,
+                    'fdMetadata': {
+                        'widgets': initialStateFDMetadata,
+                        'fields': action.payload.fields
+                    }
+                },
+                'updatedAt': Date.now()
             };
         case GET_INVESTMENTS:
             return action.payload !== undefined ? action.payload : state;
         case UPDATE_INVESTMENTS:
             return {
                 ...state,
-                'investmentData': action.payload.data,
-                'investmentMetadata': {
-                    'widgets': initialStateInvestmentMetadata,
-                    'fields': action.payload.fields
-                }
+                'investments': {
+                    'investmentData': action.payload.data,
+                    'investmentMetadata': {
+                        'widgets': initialStateInvestmentMetadata,
+                        'fields': action.payload.fields
+                    }
+                },
+                'updatedAt': Date.now()
+            };
+        case CLEANUP_ALL:
+            console.log("clearing data");
+            console.log("CLEANUP: ", {
+                'fds': initialState.fds,
+                'investments': initialState.investments,
+                'isDataAvailable': false,
+                'updatedAt': 0
+            });
+            return {
+                'fds': initialState.fds,
+                'investments': initialState.investments,
+                'isDataAvailable': false,
+                'updatedAt': 0
             };
         default:
             return state

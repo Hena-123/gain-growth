@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import './HowToUse.css';
+import './Supports.css';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -12,7 +12,7 @@ export default function Supports() {
     }, []);
 
     return(
-        <div className='about' ref={scroll}>
+        <div className='supports' ref={scroll}>
             <Container>
                 <Row>
                     <Col xl={7}>
@@ -28,7 +28,7 @@ export default function Supports() {
 
                     </Col>
                     <Col xl={5}>
-                            <img alt="Not Found" src='./About_Gain_Growth.jpg' className='img'></img>
+                            <img alt="Not Found" src='./images/About_Gain_Growth.jpg' className='img'></img>
                     </Col>
                 </Row>
             </Container>
