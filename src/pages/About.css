@@ -1,0 +1,19 @@
+.about {
+    text-align: left;
+    color: white;
+    font-weight: 300;
+}
+
+.img {
+    border-radius: 50%;
+    max-width: 100%;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.287);
+}
+
+.aboutInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

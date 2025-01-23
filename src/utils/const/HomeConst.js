@@ -1,0 +1,6 @@
+
+const homeWidgets = {
+    fdWidgets: ["TOTAL_FDS_COUNT", "TOTAL_INVESTED_OVER_YEAR", "TOTAL_GAIN_TILL_TODAY", "TOTAL_FUTURE_GAIN"],
+    investmentWidgets: ["TOTAL_INVESTMENTS_COUNT", "TOTAL_INVESTED_OVER_YEAR", "TOTAL_GAIN_TILL_TODAY", "TOTAL_FUTURE_GAIN"]
+}
+export {homeWidgets}

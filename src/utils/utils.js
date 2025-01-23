@@ -67,8 +67,8 @@ function extractFields(data) {
 function totalMaturedByField(data, keyList, field, fieldsToSum, year) {
     var aggregatedDataByField = aggregateByField(filterData(data, keyList), field, fieldsToSum);
     if(year) {
-        var currentRecord = aggregatedDataByField.filter(each => each[field] === parseInt(year))[0];
-        var records = filterDataByValue(data, field, parseInt(year));
+        var currentRecord = aggregatedDataByField.filter(each => each[field] === year)[0];
+        var records = filterDataByValue(data, field, year);
         if(currentRecord){
             return {"matured": currentRecord[fieldsToSum[0]], "count": currentRecord.count, "records": records};
         }
@@ -87,8 +87,8 @@ function totalMaturedByField(data, keyList, field, fieldsToSum, year) {
 function totalGainByField(data, keyList, field, fieldsToSum, year) {
     var aggregatedDataByField = aggregateByField(filterData(data, keyList), field, fieldsToSum);
     if(year) {
-        var currentRecord = aggregatedDataByField.filter(each => each[field] === parseInt(year))[0];
-        var records = filterDataByValue(data, field, parseInt(year));
+        var currentRecord = aggregatedDataByField.filter(each => each[field] === year)[0];
+        var records = filterDataByValue(data, field, year);
         if(currentRecord){
             return {"gain": currentRecord[fieldsToSum[1]]-currentRecord[fieldsToSum[0]], "count": currentRecord.count, "records": records};
         }
@@ -107,8 +107,8 @@ function totalGainByField(data, keyList, field, fieldsToSum, year) {
 function totalInvestedByField(data, keyList, field, fieldsToSum, year) {
     var aggregatedDataByField = aggregateByField(filterData(data, keyList), field, fieldsToSum);
     if(year) {
-        var currentRecord = aggregatedDataByField.filter(each => each[field] === parseInt(year))[0];
-        var records = filterDataByValue(data, field, parseInt(year));
+        var currentRecord = aggregatedDataByField.filter(each => each[field] === year)[0];
+        var records = filterDataByValue(data, field, year);
         if(currentRecord){
             return {"invested": currentRecord[fieldsToSum[0]], "count": currentRecord.count, "records": records};
         }
@@ -139,6 +139,38 @@ function totalGainTillTodayAndFuture(data, keyList, fieldsToSum) {
     return {'tillTodayGain': tillTodayGain, 'futureGain': futureGain}
 }
 
+function getDateDifference(start, end) {
+    const diffInMilliseconds = end - start; // Difference in milliseconds
+
+    // If the difference is less than 1 minute
+    if (diffInMilliseconds < 60000) {
+      const seconds = Math.floor(diffInMilliseconds / 1000);
+      return `${seconds}s ago`;
+    }
+
+    // If the difference is less than 1 hour
+    if (diffInMilliseconds < 3600000) {
+      const minutes = Math.floor(diffInMilliseconds / 60000);
+      const seconds = Math.floor((diffInMilliseconds % 60000) / 1000);
+      return `${minutes}m ${seconds}s ago`;
+    }
+
+    // If the difference is less than 24 hours
+    if (diffInMilliseconds < 86400000) {
+        const hours = Math.floor(diffInMilliseconds / 3600000);
+        const minutes = Math.floor((diffInMilliseconds % 3600000) / 60000);
+        const seconds = Math.floor((diffInMilliseconds % 60000) / 1000);
+        return `${hours}h ${minutes}m ${seconds}s ago`;
+      }
+
+      // If the difference is greater than 24 hours
+      const days = Math.floor(diffInMilliseconds / 86400000);
+      const hours = Math.floor((diffInMilliseconds % 86400000) / 3600000);
+      const minutes = Math.floor((diffInMilliseconds % 3600000) / 60000);
+      const seconds = Math.floor((diffInMilliseconds % 60000) / 1000);
+      return `${days}d ${hours}h ${minutes}m ${seconds}s ago`;
+}
+
 function getAllYears(data, yearFieldList) {
     var yearList = []
     data.forEach(item => {
@@ -162,10 +194,7 @@ function numbertoCurrencyFormat(num) {
 }
 
 function numbertoDateFormat(num, format) {
-    var since = new Date(1899, 11, 30); //Sat Dec 30 1899 00:00:00 GMT+0521 (India Standard Time)
-    var date = since.setDate(since.getDate() + num);
-    // return moment(new Date(date)).format('DD/MM/YYYY');
-    return moment(new Date(date)).format(format);
+    return moment(num).format(format);
 }
 
 function isCurrencyField(field) {
@@ -177,4 +206,4 @@ function isDateField(field) {
     return dateFDFields.includes(field) || dateInvestmentFields.includes(field);
 }
 
-export {filterData, aggregateByField, differenceAndSum, extractFields, totalGainByField, numbertoCurrencyFormat, numbertoDateFormat, isCurrencyField, isDateField, totalInvestedByField, totalCount, getAllYears, filterDataByValue, totalMaturedByField, totalGainTillTodayAndFuture}
+export {filterData, aggregateByField, differenceAndSum, extractFields, totalGainByField, numbertoCurrencyFormat, numbertoDateFormat, isCurrencyField, isDateField, totalInvestedByField, totalCount, getDateDifference, getAllYears, filterDataByValue, totalMaturedByField, totalGainTillTodayAndFuture}

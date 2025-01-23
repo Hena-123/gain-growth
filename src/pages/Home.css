@@ -27,3 +27,15 @@
 [class*="row"] {
     margin: 15px;
 }
+
+.sheet-settings {
+    list-style-type: none;
+    font-size: 14px;
+    color: white;
+    margin: 0px;
+}
+.sheet-settings li {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+}

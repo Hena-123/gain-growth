@@ -1,22 +1,21 @@
-import { useCallback } from 'react';
-import './HowToUse.css';
+import { useEffect } from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-export default function Supports() {
+import './About.css';
 
-    const scroll = useCallback(node => {
-        if(node != null) {
-            node.scrollIntoView(true);
-        }
+export default function About() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
     }, []);
 
     return(
-        <div className='about' ref={scroll}>
+        <div className='about'>
             <Container>
                 <Row>
                     <Col xl={7}>
-                        <div>
+                        <div className='aboutInfo'>
                             <h1>Gain-Growth: Elevate Your Investment Insights</h1>
                             <p>
                                 Welcome to Gain-Growth, your go-to platform for insightful analytics on fixed deposits and investments. Our mission is to empower you with the knowledge you need to make informed financial decisions. With our user-friendly interface, you can easily track and analyze your fixed deposits, monitor interest rates, and explore investment opportunities tailored to your goals.
@@ -25,10 +24,9 @@ export default function Supports() {
                                 Gain-Growth provides comprehensive tools that allow you to visualize your financial performance, compare options, and optimize your portfolio. Whether you are a seasoned investor or just starting out, our analytics help you maximize returns and minimize risks. Join us today and take control of your financial future with data-driven insights!
                             </p>
                         </div>
-
                     </Col>
                     <Col xl={5}>
-                            <img alt="Not Found" src='./About_Gain_Growth.jpg' className='img'></img>
+                            <img alt="Not Found" src='./images/About_Gain_Growth.jpg' className='img'></img>
                     </Col>
                 </Row>
             </Container>

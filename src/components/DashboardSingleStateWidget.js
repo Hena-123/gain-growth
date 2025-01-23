@@ -1,6 +1,7 @@
-import React from "react";
 import { useEffect, useState } from 'react';
-import {filterDataByValue, aggregateByField, totalGainByField, totalInvestedByField, totalMaturedByField, totalCount, numbertoCurrencyFormat, isCurrencyField, totalGainTillTodayAndFuture} from '../utils/utils';
+
+import { filterDataByValue, aggregateByField, totalGainByField, totalInvestedByField, totalMaturedByField, totalCount, numbertoCurrencyFormat, isCurrencyField, totalGainTillTodayAndFuture } from '../utils/utils';
+
 import './DashboardSingleStateWidget.css';
 
 function DashboardSingleStateWidget(props) {
@@ -82,7 +83,7 @@ function DashboardSingleStateWidget(props) {
     }, [props.data, props.year, props.config])
 
     return (
-        <div className="dashboardSingleStateWidget" id={props.className} onClick={props.onClick} style={props.onClick !== undefined && props.onClick !== null ? {cursor: 'pointer'}: {}}>
+        <div className="dashboardSingleStateWidget" id={props.className} onClick={props.onClick} style={props.hasDrilldown ? {cursor: 'pointer'}: {}}>
             <span>
                 {
                     isCurrencyField(props.config["name"])? numbertoCurrencyFormat(displayData):

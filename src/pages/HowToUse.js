@@ -1,33 +1,60 @@
-import { useCallback } from 'react';
-import './HowToUse.css';
+import { useEffect } from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
+import './HowToUse.css';
+
 export default function HowToUse() {
 
-    const scroll = useCallback(node => {
-        if(node != null) {
-            node.scrollIntoView(true);
-        }
+    useEffect(() => {
+        window.scrollTo(0, 0);
     }, []);
 
     return(
-        <div className='about' ref={scroll}>
+        <div className='howToUse'>
             <Container>
                 <Row>
                     <Col xl={12}>
-                        <div>
+                        <div id='howToUse'>
                             <h1>How to use Gain-Growth?</h1>
                             <ul>
                                 <li>
                                     To get max out of it, you need to follow below steps :
                                     <ol>
                                         <li>
-                                            First create one <i class="bi bi-google" style={{color: '#4dd571'}}></i> google spreadsheet which contains your investment records and <u><b>provide public access for that spreadsheet.</b></u>
+                                            First create one <i className="bi bi-google" style={{color: '#4dd571'}}></i> google spreadsheet which contains your fds and investment records.
                                         </li>
-                                        <div class='about_images'>
-                                            <img id='SheetAccess' src='/SheetAccess.png' class="image"></img>
-                                        </div>
+                                        <li>
+                                            Add <u><b>Export Data to Github</b></u> plugin to the spreadsheet using below steps.
+                                            <ul>
+                                                <li>
+                                                    Download the Code File
+                                                    <a
+                                                        id="downloadCodeFile"
+                                                        href="./Code.gs"
+                                                        download="Code.gs"
+                                                        style={{cursor: 'pointer', color: 'white'}}>
+                                                        <i class="bi bi-cloud-arrow-down-fill"
+                                                        style={{margin: '0px'}}></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    Open Google Apps Script from Extensions as shown below
+                                                    <div class='about_images'>
+                                                        <img id='ExtensionAppScript' src='./images/ExtensionAppScript.png' className="image" alt="ExtensionAppScript Not Found"></img>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    Add the code of the downloaded file to the editor shown in Google Apps Script and give a name to Google App Script Project
+                                                </li>
+                                                <li>
+                                                    Give a name to that file like Code.gs as shown below and Save it.
+                                                    <div class='about_images'>
+                                                        <img id='SaveAppScript' src='./images/SaveAppScript.png' className="image" alt="SaveAppScript Not Found"></img>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <li>
                                             Your spreadsheet <u><b>must have sheet with name Fds or Investments</b></u>, othervise you will see no data.
                                         </li>
@@ -48,20 +75,37 @@ export default function HowToUse() {
                                             </ul>
                                         </li>
                                         <li>
-                                            Copy the sheet link available in URL and use it in Edit Sheet-URL Form.
+                                            Here is the Sample Google SpreadSheet
+                                                <a
+                                                    id="sampleGoogleSpreadSheet"
+                                                    href="./Sample_GGSheet.xlsx"
+                                                    download="Sample_GGSheet.xlsx"
+                                                    style={{cursor: 'pointer', color: 'white'}}>
+                                                    <i class="bi bi-cloud-arrow-down-fill"
+                                                    style={{margin: '0px'}}></i>
+                                                </a>
+                                        </li>
+                                        <li>
+                                            Make sure your sheet has restricted access so that only you can view or modify it.
+                                            <div class='about_images'>
+                                                <img id='ShareAccess' src='./images/BluredShareAccess.png' className="image" alt="ShareAccess Not Found"></img>
+                                        </div>
+                                        </li>
+                                        <li>
+                                            Now, just add your records in Fds and Investments Sheet and click on Export Data to Github plugin.
                                         </li>
                                         <div class='about_images'>
-                                            <img id='SheetURL' src='/SheetURL_<480.png' class='image'></img>
-                                        </div>
-                                        <div class='about_images'>
-                                            <img id='SheetURL990' src='/SheetURL_>990.png' class='image'></img>
+                                            <img id='ExportDataToGithubPlugin' src='./images/ExportDataToGithubPlugin.png' className="image" alt="ExportDataToGithubPlugin Not Found"></img>
                                         </div>
                                     </ol>
                                 </li>
                                 <li>
-                                    Now you will be able to see statics on the dashboard.
+                                    Now you will be able to see data analytics on the Home page.
                                 </li>
                             </ul>
+                            <div className='note'>
+                                Note: Whenever you update your Google Spreadsheet, ensure that you export the data using the 'Export Data to GitHub' plugin.
+                            </div>
                         </div>
                     </Col>
                 </Row>

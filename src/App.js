@@ -6,7 +6,7 @@ import Investments from './pages/Investments';
 import Home from './pages/Home';
 import Layout from './pages/Layout';
 import HowToUse from './pages/HowToUse';
-import Supports from './pages/Supports';
+import About from './pages/About';
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -17,12 +17,12 @@ function App() {
     <CookiesProvider>
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index path="/" element={<Home />}></Route>
-          <Route path="/fds" element={<Fds />}></Route>
-          <Route path="/investments" element={<Investments />}></Route>
-          <Route path="/howtouse" element={<HowToUse />}></Route>
-          <Route path="/supports" element={<Supports />}></Route>
+          <Route path="/" element={<Layout />}>
+            <Route index path="/" element={<Home />}></Route>
+            <Route path="/fds" element={<Fds />}></Route>
+            <Route path="/investments" element={<Investments />}></Route>
+            <Route path="/howtouse" element={<HowToUse />}></Route>
+            <Route path="/about" element={<About />}></Route>
           </Route>
         </Routes>
         <hr style={{color: 'white', backgroundColor: 'white', height: 1, borderColor : 'white', margin: '20px 0px 0px 0px', opacity: 0.4}}/>
@@ -39,16 +39,16 @@ function App() {
                   <div className='footer-contact'>
                     <ul className='footer-ul'>
                       <li>
-                        <i class="bi bi-telephone-fill"></i>
-                        <span>Contact</span>
+                        <i className="bi bi-telephone-fill"></i>
+                        <span>7046433816</span>
                       </li>
                       <li>
-                        <i class="bi bi-envelope-at-fill"></i>
-                        <span>user@gmail.com</span>
+                        <i className="bi bi-envelope-at-fill"></i>
+                        <span>henapatel2000@gmail.com</span>
                       </li>
                       <li>
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span>Ahmedabad, Gujarat.</span>
+                        <i className="bi bi-geo-alt-fill"></i>
+                        <span>Valsad, Gujarat.</span>
                       </li>
                     </ul>
                   </div>
@@ -59,13 +59,13 @@ function App() {
               </Row>
               <Row>
                 <Col xl={2} md={3} sm={3} xs={4}>
-                  <Link class="footer-button" role="button" to="/howtouse">
-                    <span class="text">How to use?</span>
+                  <Link className="footer-button" role="button" to="/howtouse">
+                    <span className="text">How to use?</span>
                   </Link>
                 </Col>
                 <Col xl={2} md={3} sm={3} xs={4}>
-                  <Link class="footer-button" role="button" to="/supports">
-                    <span class="text">Supports</span>
+                  <Link className="footer-button" role="button" to="/about">
+                    <span className="text">About</span>
                   </Link>
                 </Col>
               </Row>
