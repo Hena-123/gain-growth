@@ -1,23 +1,23 @@
-/* eslint-disable */
-import '../App.css';
-
-import DashboardWidget from '../components/DashboardWidget';
-import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
-import {getAllYears, filterDataByValue, getDateDifference} from '../utils/utils';
-import {initialStateFDMetadata, yearFDFields} from '../utils/const/FDConst';
-import {loadDataFromSheets} from './Home';
-import {updateFDs, updateInvestments, cleanUpAll, setDataAvailability} from '../app/redux/actions';
+import { useEffect, useState, useCallback } from 'react';
 
 import { connect } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
-import {useEffect, useState, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-
+import { useSearchParams } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import BounceLoader from "react-spinners/BounceLoader";
-import { useSearchParams } from "react-router-dom";
+
+import DashboardWidget from '../components/DashboardWidget';
+import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
+import { getAllYears, filterDataByValue, getDateDifference } from '../utils/utils';
+import { initialStateFDMetadata, yearFDFields } from '../utils/const/FDConst';
+
+import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability } from '../app/redux/actions';
+import { loadDataFromSheets } from './Home';
+
+import '../App.css';
 
 function Fds(props) {
 
@@ -36,9 +36,10 @@ function Fds(props) {
     const [investedThatMaturedInDrilldown, setInvestedThatMaturedInDrilldown] = useState(false);
 
     const [selectedRowValue, setSelectedRowValue] = useState(null);
-    const [fileLinkCookie, setFileLinkCookie] = useCookies(['filelink']);
-    const [fileNameCookie, setFileNameCookie] = useCookies(['filename']);
-    const [updatedAt, setUpdatedAt] = useState(props.updatedAt);
+    const [fileLinkCookie, setFileLinkCookie] = useCookies(['gg_filelink']);
+    const [fileNameCookie, setFileNameCookie] = useCookies(['gg_filename']);
+    const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
+    const [timeAgo, setTimeAgo] = useState('');
     const navigate = useNavigate();
 
     // When onClick is performed, on Component render (initial render)
@@ -55,6 +56,17 @@ function Fds(props) {
                 unloadDrillDowns();
             }
         });
+
+        const interval = setInterval(() => {
+            if(updatedAtCookie.gg_updatedAt > 0){
+                setTimeAgo(getDateDifference(new Date(updatedAtCookie.gg_updatedAt), new Date()));
+            } else {
+                setTimeAgo('0s ago');
+            }
+        }, 1000);
+
+        //Clearing the interval
+        return () => clearInterval(interval);
     }, []);
 
     // After data is available on UI, after loading
@@ -166,13 +178,13 @@ function Fds(props) {
                             <div style={{fontSize: '14px', color: 'white'}}>
                                 <div className="tooltip1">
                                     <a
-                                        href={fileLinkCookie.filelink !== undefined ? fileLinkCookie.filelink : ""}
+                                        href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
                                         style={{cursor: 'pointer', color: 'white'}}
                                         target="_blank">
                                         <i className="bi bi-file-earmark-check-fill" style={{padding: '0px 10px', fontWeight: 'bold', fontSize: '20px'}}></i>
                                     </a>
                                     <span className="tooltiptext1">
-                                        {(fileLinkCookie.filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.filename}
+                                        {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
                                     </span>
                                 </div>
                                 <div className="tooltip1">
@@ -188,7 +200,7 @@ function Fds(props) {
                                         Reload
                                     </span>
                                 </div>
-                                {getDateDifference(new Date(props.updatedAt), new Date())}
+                                {timeAgo}
                             </div>
                         </Col>
                     </Row>

@@ -1,7 +1,8 @@
-import React from "react";
 import { useEffect, useState } from 'react';
+
+import { filterData, aggregateByField, numbertoCurrencyFormat, numbertoDateFormat, isCurrencyField, isDateField, totalGainByField, totalInvestedByField, filterDataByValue, totalMaturedByField } from '../utils/utils';
+
 import './DashboardWidget.css';
-import {filterData, aggregateByField, numbertoCurrencyFormat, numbertoDateFormat, isCurrencyField, isDateField, totalGainByField, totalInvestedByField, filterDataByValue, totalMaturedByField} from '../utils/utils';
 
 function DashboardWidget(props) {
 

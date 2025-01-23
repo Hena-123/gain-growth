@@ -1,36 +1,45 @@
-/* eslint-disable */
-import './Home.css';
-import {connect} from 'react-redux';
-
 import { useEffect, useState, useCallback } from 'react';
-import DashboardWidget from '../components/DashboardWidget';
-import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
-import { useCookies } from "react-cookie";
-import DataHandler from '../components/DataHandler';
-import {extractFields, getDateDifference} from '../utils/utils'
-import { ALLOWED_DRILLDOWN_CLASS_NAMES, GITHUB_REPO, GITHUB_OWNER, GITHUB_REF_BRANCH, GITHUB_TOKEN} from '../utils/const/const';
-import  {homeWidgets} from '../utils/const/HomeConst';
-import {updateFDs, updateInvestments, cleanUpAll, setDataAvailability, getDataAvailability, getInvalidSheet, setInvalidSheet} from '../app/redux/actions';
-import BounceLoader from "react-spinners/BounceLoader";
-import { useNavigate } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { useCookies } from "react-cookie";
+import { useNavigate } from 'react-router-dom';
+import BounceLoader from "react-spinners/BounceLoader";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Home(props) {
+import DashboardWidget from '../components/DashboardWidget';
+import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
+import Alert from '../components/Alert';
+import DataHandler from '../components/DataHandler';
 
-    const navigate = useNavigate();
+import { extractFields, getDateDifference } from '../utils/utils'
+import { ALLOWED_DRILLDOWN_CLASS_NAMES, GITHUB_REPO, GITHUB_OWNER, GITHUB_REF_BRANCH, GITHUB_TOKEN} from '../utils/const/const';
+import  { homeWidgets } from '../utils/const/HomeConst';
+
+import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability, getDataAvailability, getInvalidSheet, setInvalidSheet } from '../app/redux/actions';
+
+import './Home.css';
+
+function Home(props) {
 
     const [totalFDCountDrilldown, setTotalFDCountDrilldown] = useState(false);
     const [totalInvestmentCountDrilldown, setTotalInvestmentCountDrilldown] = useState(false);
 
-    const [fileLinkCookie, setFileLinkCookie] = useCookies(['file']);
-    const [fileNameCookie, setFileNameCookie] = useCookies(['filename']);
+    const [fileLinkCookie, setFileLinkCookie] = useCookies(['gg_filelink']);
+    const [fileNameCookie, setFileNameCookie] = useCookies(['gg_filename']);
+    const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
+    const [timeAgo, setTimeAgo] = useState('');
     const [isDataHandlerActive, setIsDataHandlerActive] = useState(false);
     const [editSheet, setEditSheet] = useState(false);
     const [invalidSheet, setInvalidSheet] = useState(false);
+
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertType, setAlertType] = useState("error");
     const [load, setLoad] = useState(true);
+    const [noSheetAvailable, setNoSheetAvailable] = useState(false);
+    const navigate = useNavigate();
 
     // When onClick is performed, on Component render (initial render)
     useEffect((e) => {
@@ -48,6 +57,30 @@ function Home(props) {
                 unloadDrillDowns();
             }
         });
+
+        const interval = setInterval(() => {
+            if(updatedAtCookie.gg_updatedAt > 0){
+                setTimeAgo(getDateDifference(new Date(updatedAtCookie.gg_updatedAt), new Date()));
+            } else {
+                setTimeAgo('0s ago');
+            }
+        }, 1000);
+
+        //Clearing the interval
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if(updatedAtCookie.gg_updatedAt > 0){
+                setTimeAgo(getDateDifference(new Date(updatedAtCookie.gg_updatedAt), new Date()));
+            } else {
+                setTimeAgo('0s ago');
+            }
+        }, 1000);
+
+        //Clearing the interval
+        return () => clearInterval(interval);
     }, []);
 
     // When fdData & investmentData changes
@@ -55,16 +88,21 @@ function Home(props) {
         if(props.isDataAvailable) {
             console.log("Data Available");
             setInvalidSheet(false);
+            setNoSheetAvailable(false);
             setTimeout(()=> {
+                openAlert("<p style='margin: 0px'><strong>Success:</strong> Data has been successfully loaded from Google Sheets.</p>", "success");
                 setLoad(false);
             }, 2000);
         }
-        else if(props.invalidSheet) {
+        else if(props.invalidSheet.status) {
             console.log("Invalid");
             setInvalidSheet(true);
+            setNoSheetAvailable(false);
+            openAlert(props.invalidSheet.message, "error");
         }
         else {
             console.log("No Data Available");
+            setNoSheetAvailable(true);
             setIsDataHandlerActive(true);
         }
     }, [props.fds.fdData, props.invalidSheet]);
@@ -85,8 +123,22 @@ function Home(props) {
         setEditSheet(false);
     }
 
+    const openAlert = (message, type) => {
+        setShowAlert(true);
+        setAlertType(type);
+        setAlertMessage(message);
+    }
+    const closeAlert = () => {
+        setShowAlert(false);
+        setAlertMessage("");
+    }
+
     return(
         <div id="home">
+            { showAlert &&
+                <Alert type={alertType} message={alertMessage} show={true} onClose={closeAlert}>
+                </Alert>
+            }
             { isDataHandlerActive &&
                 <DataHandler isModalOpen={editSheet} onModalClose={onModalClose} updateFDs={props.updateFDs} updateInvestments={props.updateInvestments} cleanUpAll={props.cleanUpAll} setDataAvailability={props.setDataAvailability} setInvalidSheet={props.setInvalidSheet}></DataHandler>
             }
@@ -100,16 +152,16 @@ function Home(props) {
                     <Col xl={9} md={12} sm={12} xs={12} style={{alignSelf: 'center', textAlign: 'left', color: 'white', fontSize: '20px'}}>
                         <div className="tooltip1">
                             <a
-                                href={fileLinkCookie.filelink !== undefined ? fileLinkCookie.filelink : ""}
+                                href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
                                 style={{cursor: 'pointer', color: 'white'}}
                                 target="_blank">
                                 <i className="bi bi-file-earmark-check-fill"></i>
                             </a>
                             <span className="tooltiptext1">
-                                {(fileLinkCookie.filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.filename}
+                                {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + (fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : "")}
                             </span>
                         </div>
-                        {fileNameCookie.filename}
+                        {fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : ""}
                     </Col>
                     <Col xl={3} md={12} sm={12} xs={12} style={{textAlign: 'right', color: 'white'}}>
                         <div className="tooltip1">
@@ -130,99 +182,113 @@ function Home(props) {
                                 style={{margin: '0px'}}
                                 onClick={() => {
                                     // Reload from sheets from localstorage
-                                    loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments);
+                                    setIsDataHandlerActive(true);
                                 }}>
                             </i>
                             <span className="tooltiptext1">
                                 Reload
                             </span>
                         </div>
-                        {props.updatedAt > 0 ? getDateDifference(new Date(props.updatedAt), new Date()) : '0s ago'}
+                        <div className="tooltip1">
+                            <div style={{padding: '4px'}}>
+                                {timeAgo}
+                            </div>
+                            <span className="tooltiptext1">
+                                Sheet Updated
+                            </span>
+                        </div>
                     </Col>
                 </Row>
             </Container>
             {
                 invalidSheet ? 
                     <div className="invalidContainer">
-                        <img className="invalidSheet" onClick={() => navigate('/howtouse')} src="./images/Invalid_Sheet.png" alt="Gain Growth"></img>
+                        <img className="invalidSheet" onClick={() => navigate('/howtouse')} src="./images/Invalid_Sheet.png" alt="Invalid Sheet"></img>
                     </div>
                 :
                 (
-                    load ?
-                        <div id="loader">
-                            <BounceLoader color={'#36d7b7'} loading={load} size={70} aria-label="Loading Spinner" data-testid="loader"/>
+                    noSheetAvailable ?
+                        <div className="noSheetContainer">
+                            <img className="noSheetAvailable" onClick={() => navigate('/howtouse')} src="./images/No_Sheet_Available.png" alt="No Sheet Available"></img>
                         </div>
-                    :
-                    <Container>
-                        <Row>
-                            {homeWidgets.fdWidgets.map(widget =>
-                                <Col xl={3} md={6} sm={3} xs={12} id={widget}>
-                                    <DashboardSingleStateWidget
-                                        className="dashboardSingleStateWidget-bubble"
-                                        data={props.fds.fdData}
-                                        config={props.fds.fdMetadata['widgets'][widget]}
-                                        hasDrilldown = {widget == "TOTAL_FDS_COUNT" ? true : false}
-                                        onClick={() => {
-                                            if(widget == "TOTAL_FDS_COUNT") {
-                                                unloadDrillDowns();
-                                                setTotalFDCountDrilldown(prev=>!prev);
-                                            }
-                                        }}
-                                        superscriptEnabled={false}
-                                        subscriptEnabled={true}
-                                        hoverInfo={false}>
-                                    </DashboardSingleStateWidget>
-                                </Col>
-                            )}
-                        </Row>
-                        {
-                            totalFDCountDrilldown
-                            &&
-                                <Row className='bounceElement' ref={scroll}>
-                                    <Col xl={12}>
-                                        <DashboardWidget
+                        :
+                    (
+                        load ?
+                            <div id="loader">
+                                <BounceLoader color={'#36d7b7'} loading={load} size={70} aria-label="Loading Spinner" data-testid="loader"/>
+                            </div>
+                        :
+                        <Container>
+                            <Row>
+                                {homeWidgets.fdWidgets.map(widget =>
+                                    <Col xl={3} md={6} sm={3} xs={12} id={widget}>
+                                        <DashboardSingleStateWidget
+                                            className="dashboardSingleStateWidget-bubble"
                                             data={props.fds.fdData}
-                                            config={props.fds.fdMetadata['widgets']['TOTAL_FDS_COUNT']}
-                                            filter={{"widget": 'TOTAL_FDS_COUNT'}}>
-                                        </DashboardWidget>
+                                            config={props.fds.fdMetadata['widgets'][widget]}
+                                            hasDrilldown = {widget == "TOTAL_FDS_COUNT" ? true : false}
+                                            onClick={() => {
+                                                if(widget == "TOTAL_FDS_COUNT") {
+                                                    unloadDrillDowns();
+                                                    setTotalFDCountDrilldown(prev=>!prev);
+                                                }
+                                            }}
+                                            superscriptEnabled={false}
+                                            subscriptEnabled={true}
+                                            hoverInfo={false}>
+                                        </DashboardSingleStateWidget>
                                     </Col>
-                                </Row>
-                        }
-                        <Row>
-                            {homeWidgets.investmentWidgets.map(widget =>
-                                <Col xl={3} md={6} sm={3} xs={12} id={widget}>
-                                    <DashboardSingleStateWidget
-                                        className="dashboardSingleStateWidget-bubble"
-                                        data={props.investments.investmentData}
-                                        config={props.investments.investmentMetadata['widgets'][widget]}
-                                        hasDrilldown = {widget == "TOTAL_INVESTMENTS_COUNT" ? true : false}
-                                        onClick={() => {
-                                            if(widget == "TOTAL_INVESTMENTS_COUNT") {
-                                                unloadDrillDowns();
-                                                setTotalInvestmentCountDrilldown(prev=>!prev);
-                                            }
-                                        }}
-                                        superscriptEnabled={false}
-                                        subscriptEnabled={true}
-                                        hoverInfo={false}>
-                                    </DashboardSingleStateWidget>
-                                </Col>
-                            )}
-                        </Row>
-                        {
-                            totalInvestmentCountDrilldown
-                            &&
-                                <Row className='bounceElement' ref={scroll}>
-                                    <Col xl={12}>
-                                        <DashboardWidget
+                                )}
+                            </Row>
+                            {
+                                totalFDCountDrilldown
+                                &&
+                                    <Row className='bounceElement' ref={scroll}>
+                                        <Col xl={12}>
+                                            <DashboardWidget
+                                                data={props.fds.fdData}
+                                                config={props.fds.fdMetadata['widgets']['TOTAL_FDS_COUNT']}
+                                                filter={{"widget": 'TOTAL_FDS_COUNT'}}>
+                                            </DashboardWidget>
+                                        </Col>
+                                    </Row>
+                            }
+                            <Row>
+                                {homeWidgets.investmentWidgets.map(widget =>
+                                    <Col xl={3} md={6} sm={3} xs={12} id={widget}>
+                                        <DashboardSingleStateWidget
+                                            className="dashboardSingleStateWidget-bubble"
                                             data={props.investments.investmentData}
-                                            config={props.investments.investmentMetadata['widgets']['TOTAL_INVESTMENTS_COUNT']}
-                                            filter={{"widget": 'TOTAL_INVESTMENTS_COUNT'}}>
-                                        </DashboardWidget>
+                                            config={props.investments.investmentMetadata['widgets'][widget]}
+                                            hasDrilldown = {widget == "TOTAL_INVESTMENTS_COUNT" ? true : false}
+                                            onClick={() => {
+                                                if(widget == "TOTAL_INVESTMENTS_COUNT") {
+                                                    unloadDrillDowns();
+                                                    setTotalInvestmentCountDrilldown(prev=>!prev);
+                                                }
+                                            }}
+                                            superscriptEnabled={false}
+                                            subscriptEnabled={true}
+                                            hoverInfo={false}>
+                                        </DashboardSingleStateWidget>
                                     </Col>
-                                </Row>
-                        }
-                    </Container>
+                                )}
+                            </Row>
+                            {
+                                totalInvestmentCountDrilldown
+                                &&
+                                    <Row className='bounceElement' ref={scroll}>
+                                        <Col xl={12}>
+                                            <DashboardWidget
+                                                data={props.investments.investmentData}
+                                                config={props.investments.investmentMetadata['widgets']['TOTAL_INVESTMENTS_COUNT']}
+                                                filter={{"widget": 'TOTAL_INVESTMENTS_COUNT'}}>
+                                            </DashboardWidget>
+                                        </Col>
+                                    </Row>
+                            }
+                        </Container>
+                    )
                 )
             }
         </div>
@@ -292,14 +358,14 @@ export function loadDataFromSheets(spreadSheetId, updateFDs, updateInvestments, 
                 });
             });
             setDataAvailability(true);
-            setInvalidSheet(false);
+            setInvalidSheet({status: false, message: ''});
             return {isLoaded: response.ok, message: "Data loaded successfully", result: {'obj': resultObject}};
 
         } catch(error) {
             console.error("Error: ", error.message);
             cleanUpAll();
-            setInvalidSheet(true);
-            return {isLoaded: false, message: "Error: Could not get data from google sheet.<br> Please validate the step mentioned in <code class='c-code'>How to use?</code> page."};
+            setInvalidSheet({status: true, message: "<p style='margin: 0px'><strong>Error:</strong> Could not retrieve data from Google Sheets. <br> Please verify the steps mentioned in the <code class='c-code'>How to Use?</code> guide.</p>"});
+            return {isLoaded: false};
         }
     }
     return fetchData();
@@ -307,7 +373,7 @@ export function loadDataFromSheets(spreadSheetId, updateFDs, updateInvestments, 
 
 const mapStateToProps = state => {
     console.log("STATE on HOME: ",state)
-    const { fds, investments, isDataAvailable, updatedAt, invalidSheet} = state.connectReducer.dataset;
-    return { 'fds': fds, 'investments': investments, 'isDataAvailable': isDataAvailable, 'updatedAt': updatedAt, 'invalidSheet': invalidSheet};
+    const { fds, investments, isDataAvailable, invalidSheet} = state.connectReducer.dataset;
+    return { 'fds': fds, 'investments': investments, 'isDataAvailable': isDataAvailable, 'invalidSheet': invalidSheet};
 }
 export default connect(mapStateToProps, {updateFDs, updateInvestments, cleanUpAll, setDataAvailability, getDataAvailability, getInvalidSheet, setInvalidSheet})(Home);

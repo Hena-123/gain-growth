@@ -1,45 +1,28 @@
-/* eslint-disable */
-
 import { useState } from 'react';
 
-import './InputModal.css';
-import '../App.css';
-import {connect} from 'react-redux';
-import {loadDataFromSheets} from '../pages/Home';
-import {updateFDs, updateInvestments, cleanUpAll, setDataAvailability} from '../app/redux/actions';
+import { useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
-import Alert from '../components/Alert';
-
+import { connect } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { OverlayTrigger } from 'react-bootstrap';
-import Tooltip from 'react-bootstrap/Tooltip';
-import { useNavigate } from 'react-router-dom';
 
+import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability } from '../app/redux/actions';
+import { loadDataFromSheets } from '../pages/Home';
+
+import './InputModal.css';
+import '../App.css';
 
 function InputModal(props) {
 
     const [isModalOpen, setIsModalOpen] = useState(props.isModalOpen);
     const [isValidatedModal, setIsValidatedModal] = useState(false);
-    const [cookies, setCookies] = useCookies(['spreadSheetId']);
-    const [fileLinkCookie, setFileLinkCookie] = useCookies(['filelink']);
-    const [fileNameCookie, setFileNameCookie] = useCookies(['filename']);
-
-    const [showAlert, setShowAlert] = useState(false);
-    const [alertMessage, setAlertMessage] = useState("");
+    const [cookies, setCookies] = useCookies(['gg_spreadSheetId']);
+    const [fileLinkCookie, setFileLinkCookie] = useCookies(['gg_filelink']);
+    const [fileNameCookie, setFileNameCookie] = useCookies(['gg_filename']);
+    const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
 
     const navigate = useNavigate();
-
-    const openAlert = (message) => {
-        setShowAlert(true);
-        setAlertMessage(message);
-    }
-    const closeAlert = () => {
-        setShowAlert(false);
-        setAlertMessage("");
-        //navigate("/");
-    }
 
     const handleChange = (event) => {
         const form = event.currentTarget;
@@ -65,18 +48,17 @@ function InputModal(props) {
             // const re = new RegExp('\\/d\\/(.*)\\/edit\\?gid=(.*)#')
             const re = new RegExp('\\/d\\/(.*)\\/.*')
             const [_, spreadSheetId] = re.exec(filePath);
-            setCookies("spreadSheetId", spreadSheetId);
-            setFileLinkCookie("filelink", filePath);
-            setFileNameCookie("filename", fileName);
+            setCookies("gg_spreadSheetId", spreadSheetId);
+            setFileLinkCookie("gg_filelink", filePath);
+            setFileNameCookie("gg_filename", fileName);
+            setUpdatedAtCookie("gg_updatedAt", Date.now());
             fileControlElement.value="";
 
             var response = loadDataFromSheets(spreadSheetId, props.updateFDs, props.updateInvestments, props.cleanUpAll, props.setDataAvailability, props.setInvalidSheet);
             props.onModalClose();
             response.then(status => {
                 if (!status.isLoaded) {
-                    openAlert(status.message);
                     console.log("alert");
-                    navigate("/");
                 }
                 else {
                     console.log("success");
@@ -88,10 +70,6 @@ function InputModal(props) {
 
     return (
         <div id="inputmodal">
-            { showAlert &&
-                <Alert message={alertMessage} show={true} onClose={closeAlert}>
-                </Alert>
-            }
             <Modal
                 size="lg"
                 show={isModalOpen}

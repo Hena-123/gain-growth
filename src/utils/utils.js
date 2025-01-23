@@ -152,7 +152,7 @@ function getDateDifference(start, end) {
     if (diffInMilliseconds < 3600000) {
       const minutes = Math.floor(diffInMilliseconds / 60000);
       const seconds = Math.floor((diffInMilliseconds % 60000) / 1000);
-      return `${minutes}m, ${seconds}s ago`;
+      return `${minutes}m ${seconds}s ago`;
     }
 
     // If the difference is less than 24 hours
@@ -160,7 +160,7 @@ function getDateDifference(start, end) {
         const hours = Math.floor(diffInMilliseconds / 3600000);
         const minutes = Math.floor((diffInMilliseconds % 3600000) / 60000);
         const seconds = Math.floor((diffInMilliseconds % 60000) / 1000);
-        return `${hours}h, ${minutes}m, ${seconds}s ago`;
+        return `${hours}h ${minutes}m ${seconds}s ago`;
       }
 
       // If the difference is greater than 24 hours
@@ -168,7 +168,7 @@ function getDateDifference(start, end) {
       const hours = Math.floor((diffInMilliseconds % 86400000) / 3600000);
       const minutes = Math.floor((diffInMilliseconds % 3600000) / 60000);
       const seconds = Math.floor((diffInMilliseconds % 60000) / 1000);
-      return `${days}d, ${hours}h, ${minutes}m, ${seconds}s ago`;
+      return `${days}d ${hours}h ${minutes}m ${seconds}s ago`;
 }
 
 function getAllYears(data, yearFieldList) {

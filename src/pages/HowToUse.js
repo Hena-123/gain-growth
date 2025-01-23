@@ -1,18 +1,17 @@
-import { useCallback } from 'react';
-import './HowToUse.css';
+import { useEffect } from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
+import './HowToUse.css';
+
 export default function HowToUse() {
 
-    const scroll = useCallback(node => {
-        if(node != null) {
-            node.scrollIntoView(true);
-        }
+    useEffect(() => {
+        window.scrollTo(0, 0);
     }, []);
 
     return(
-        <div className='howToUse' ref={scroll}>
+        <div className='howToUse'>
             <Container>
                 <Row>
                     <Col xl={12}>
@@ -29,7 +28,15 @@ export default function HowToUse() {
                                             Add <u><b>Export Data to Github</b></u> plugin to the spreadsheet using below steps.
                                             <ul>
                                                 <li>
-                                                    Download the File: <a>file</a>
+                                                    Download the Code File
+                                                    <a
+                                                        id="downloadCodeFile"
+                                                        href="./Code.gs"
+                                                        download="Code.gs"
+                                                        style={{cursor: 'pointer', color: 'white'}}>
+                                                        <i class="bi bi-cloud-arrow-down-fill"
+                                                        style={{margin: '0px'}}></i>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     Open Google Apps Script from Extensions as shown below
@@ -38,7 +45,10 @@ export default function HowToUse() {
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    Add the code of the file to the editor shown in Google Apps Script and give a name to Google App Script Project and Save it
+                                                    Add the code of the downloaded file to the editor shown in Google Apps Script and give a name to Google App Script Project
+                                                </li>
+                                                <li>
+                                                    Give a name to that file like Code.gs as shown below and Save it.
                                                     <div class='about_images'>
                                                         <img id='SaveAppScript' src='./images/SaveAppScript.png' className="image" alt="SaveAppScript Not Found"></img>
                                                     </div>
@@ -65,6 +75,23 @@ export default function HowToUse() {
                                             </ul>
                                         </li>
                                         <li>
+                                            Here is the Sample Google SpreadSheet
+                                                <a
+                                                    id="sampleGoogleSpreadSheet"
+                                                    href="./Sample_GGSheet.xlsx"
+                                                    download="Sample_GGSheet.xlsx"
+                                                    style={{cursor: 'pointer', color: 'white'}}>
+                                                    <i class="bi bi-cloud-arrow-down-fill"
+                                                    style={{margin: '0px'}}></i>
+                                                </a>
+                                        </li>
+                                        <li>
+                                            Make sure your sheet has restricted access so that only you can view or modify it.
+                                            <div class='about_images'>
+                                                <img id='ShareAccess' src='./images/BluredShareAccess.png' className="image" alt="ShareAccess Not Found"></img>
+                                        </div>
+                                        </li>
+                                        <li>
                                             Now, just add your records in Fds and Investments Sheet and click on Export Data to Github plugin.
                                         </li>
                                         <div class='about_images'>
@@ -75,10 +102,10 @@ export default function HowToUse() {
                                 <li>
                                     Now you will be able to see data analytics on the Home page.
                                 </li>
-                                <li className='highlight'>
-                                    Remember: every time you made some changes in your google spreadsheet, you need to export your data using <u><b>Export Data To Github</b></u> plugin.
-                                </li>
                             </ul>
+                            <div className='note'>
+                                Note: Whenever you update your Google Spreadsheet, ensure that you export the data using the 'Export Data to GitHub' plugin.
+                            </div>
                         </div>
                     </Col>
                 </Row>

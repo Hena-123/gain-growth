@@ -1,29 +1,11 @@
-import './Layout.css';
-
-import { useEffect, useState } from 'react';
-import { Outlet, Link } from "react-router-dom";
-import DataHandler from '../components/DataHandler';
+import { Outlet, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useNavigate, useLocation } from 'react-router-dom';
-import {updateFDs, updateInvestments, cleanUpAll} from '../app/redux/actions';
-import { useCookies } from "react-cookie";
+
+import './Layout.css';
 
 function Layout() {
-
-    const [cookies, setCookie] = useCookies(['spreadSheetId']);
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const [invalidSheet, setInvalidSheet] = useState(false);
-
-    useEffect(() => {
-        // console.log("navigated from layout");
-        // setInvalidSheet(location.state?.invalidsheet !== undefined ? location.state?.invalidsheet : false);
-        // console.log("invalid sheet", invalidSheet);
-        // console.log("location", location);
-    }, [])
 
     return (
         <>
@@ -40,22 +22,27 @@ function Layout() {
                             <Link className="button-shadow" to="/">Home</Link>
                             <Link className="button-shadow" to="/fds">Fixed Deposits</Link>
                             <Link className="button-shadow" to="/investments">Investments</Link>
+                            <Link className='button-shadow' to="/howtouse">
+                                <div className='icon-button'>
+                                    <i class="bi bi-journal-bookmark-fill"></i>
+                                    <span>
+                                        How to Use?
+                                    </span>
+                                </div>
+                            </Link>
+                            <Link className='button-shadow' to="/about">
+                                <div className='icon-button'>
+                                    <i class="bi bi-question-circle-fill"></i>
+                                    <span>
+                                        About
+                                    </span>
+                                </div>
+                            </Link>
                         </Col>
                     </Row>
                 </Container>
-                <Outlet />
+                <Outlet/>
             </div>
-            {/* {
-                invalidSheet ?
-                    <div style={{textAlign: 'center'}}>
-                        <div className="welcomeTitle" >
-                            Welcome to Gain Growth
-                        </div>
-                        <img className="invalidSheet" onClick={() => navigate('/howtouse')} src="/Invalid_Sheet.png" alt="Gain Growth"></img>
-                    </div>
-                :
-                <Outlet />
-            } */}
         </>
     );
 }

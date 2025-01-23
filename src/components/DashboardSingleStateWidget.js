@@ -1,6 +1,7 @@
-import React from "react";
 import { useEffect, useState } from 'react';
-import {filterDataByValue, aggregateByField, totalGainByField, totalInvestedByField, totalMaturedByField, totalCount, numbertoCurrencyFormat, isCurrencyField, totalGainTillTodayAndFuture} from '../utils/utils';
+
+import { filterDataByValue, aggregateByField, totalGainByField, totalInvestedByField, totalMaturedByField, totalCount, numbertoCurrencyFormat, isCurrencyField, totalGainTillTodayAndFuture } from '../utils/utils';
+
 import './DashboardSingleStateWidget.css';
 
 function DashboardSingleStateWidget(props) {

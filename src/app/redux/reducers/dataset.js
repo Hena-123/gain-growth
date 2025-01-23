@@ -12,8 +12,7 @@ const initialState = {
         'investmentMetadata': {'widgets': initialStateInvestmentMetadata, 'fields': []}
     },
     'isDataAvailable': false,
-    'invalidSheet': false,
-    'updatedAt': 0
+    'invalidSheet': false
 }
 
 
@@ -31,7 +30,6 @@ export default function dataset(state = initialState, action) {
         case GET_INVALIDSHEET:
             return action.payload !== undefined ? action.payload : state;
         case SET_INVALIDSHEET:
-            console.log("invalid sheet dispatch: ", action.payload);
             return {
                 ...state,
                 'invalidSheet': action.payload
@@ -45,8 +43,7 @@ export default function dataset(state = initialState, action) {
                         'widgets': initialStateFDMetadata,
                         'fields': action.payload.fields
                     }
-                },
-                'updatedAt': Date.now()
+                }
             };
         case GET_INVESTMENTS:
             return action.payload !== undefined ? action.payload : state;
@@ -59,22 +56,13 @@ export default function dataset(state = initialState, action) {
                         'widgets': initialStateInvestmentMetadata,
                         'fields': action.payload.fields
                     }
-                },
-                'updatedAt': Date.now()
+                }
             };
         case CLEANUP_ALL:
-            console.log("clearing data");
-            console.log("CLEANUP: ", {
-                'fds': initialState.fds,
-                'investments': initialState.investments,
-                'isDataAvailable': false,
-                'updatedAt': 0
-            });
             return {
                 'fds': initialState.fds,
                 'investments': initialState.investments,
-                'isDataAvailable': false,
-                'updatedAt': 0
+                'isDataAvailable': false
             };
         default:
             return state

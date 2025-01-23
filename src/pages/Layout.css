@@ -31,6 +31,48 @@
   text-decoration: none;
 }
 
+.icon-button i {
+  font-size: 18px;
+}
+
+.icon-button span{
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 1.5s;
+
+  position: absolute;
+  z-index: 1;
+  bottom: -60%;
+  left: 50%;
+  white-space: nowrap;
+
+  width: auto;
+  max-width: 500px;
+  background-color: #f7f7f7;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.icon-button span::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #f7f7f7 transparent;
+}
+
+.button-shadow:hover .icon-button span {
+  visibility: visible;
+  opacity: 1;
+}
+
 .button-shadow:hover {
   box-shadow: rgba(255, 255, 255, 0.35) 0px -50px 36px -28px inset;
   text-decoration: none !important;
