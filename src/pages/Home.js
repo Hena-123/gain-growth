@@ -301,6 +301,7 @@ export function loadDataFromSheets(spreadSheetId, updateFDs, updateInvestments, 
     const refParam = `?ref=${GITHUB_REF_BRANCH}`;
 
     const fileCheckURL = baseURL + refParam;
+    console.log("token: ",GITHUB_TOKEN);
     const options = {
         method: 'GET',
         headers: {
