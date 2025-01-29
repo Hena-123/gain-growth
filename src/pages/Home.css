@@ -21,9 +21,6 @@
     color: white;
 }
 
-#home {
-    text-align: center;
-}
 [class*="row"] {
     margin: 15px;
 }
@@ -38,4 +35,8 @@
     display: inline;
     justify-content: center;
     align-items: center;
+}
+
+.home {
+    position: relative;
 }

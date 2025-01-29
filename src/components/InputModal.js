@@ -98,10 +98,11 @@ function InputModal(props) {
                             </InputGroup>
                             <Form.Label>
                                 Datasheet URL&nbsp;
-                                <div className="tooltip1">
-                                    <i className="bi bi-info-circle" style={{padding: '0px', fontSize: '15px'}}></i>
-                                    <span className="tooltiptext1" style={{maxWidth: '900px', width: 'auto', whiteSpace: 'nowrap'}}>
+                                <div className="ctooltip">
+                                    <i className="bi bi-info-circle" style={{color: 'black', padding: '0px', fontSize: '15px'}}></i>
+                                        <span className="ctooltiptext right-ctooltiptext" style={{maxWidth: '900px', whiteSpace: 'unset', backgroundColor: '#3e3e3e', color: '#f7f7f7'}}>
                                         Enter the URL like: https://docs.google.com/spreadsheets/d//SPREADSHEET_ID/edit?gid=SHEET_ID#gid=SHEET_ID
+                                        <br></br><b>OR</b><br></br>Just go to How to use? Page for more info.
                                     </span>
                                 </div>
                             </Form.Label>

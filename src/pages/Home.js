@@ -134,7 +134,7 @@ function Home(props) {
     }
 
     return(
-        <div id="home">
+        <div className="home">
             { showAlert &&
                 <Alert type={alertType} message={alertMessage} show={true} onClose={closeAlert}>
                 </Alert>
@@ -149,35 +149,34 @@ function Home(props) {
                     </div>
                 </Row>
                 <Row style={{margin: '0px', borderRadius: '10px', boxShadow: 'inset 0 0 50px rgba(255, 255, 255, 0.287)', padding: '8px'}}>
-                    <Col xl={9} md={12} sm={12} xs={12} style={{alignSelf: 'center', textAlign: 'left', color: 'white', fontSize: '20px'}}>
-                        <div className="tooltip1">
+                    <Col xl={9} md={12} sm={12} xs={12} style={{alignSelf: 'center', textAlign: 'left', fontSize: '20px'}}>
+                        <div className="ctooltip">
                             <a
                                 href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
-                                style={{cursor: 'pointer', color: 'white'}}
                                 target="_blank">
                                 <i className="bi bi-file-earmark-check-fill"></i>
                             </a>
-                            <span className="tooltiptext1">
+                            <span className="ctooltiptext top-ctooltiptext">
                                 {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + (fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : "")}
                             </span>
                         </div>
                         {fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : ""}
                     </Col>
-                    <Col xl={3} md={12} sm={12} xs={12} style={{textAlign: 'right', color: 'white'}}>
-                        <div className="tooltip1">
+                    <Col xl={3} md={12} sm={12} xs={12} style={{textAlign: 'right'}}>
+                        <div className="ctooltip">
                             <button
-                                style={{padding: '0px', background: 'none', border: 'none', cursor: 'pointer', color: 'white'}}
+                                style={{padding: '0px', background: 'none', border: 'none'}}
                                 onClick={() => {
                                     setIsDataHandlerActive(true);
                                     setEditSheet(true);
                                 }}>
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                            <span className="tooltiptext1">
+                            <span className="ctooltiptext top-ctooltiptext">
                                 Edit your sheet
                             </span>
                         </div>
-                        <div className="tooltip1">
+                        <div className="ctooltip">
                             <i className="bi bi-arrow-repeat"
                                 style={{margin: '0px'}}
                                 onClick={() => {
@@ -185,15 +184,15 @@ function Home(props) {
                                     setIsDataHandlerActive(true);
                                 }}>
                             </i>
-                            <span className="tooltiptext1">
+                            <span className="ctooltiptext top-ctooltiptext">
                                 Reload
                             </span>
                         </div>
-                        <div className="tooltip1">
+                        <div className="ctooltip">
                             <div style={{padding: '4px'}}>
                                 {timeAgo}
                             </div>
-                            <span className="tooltiptext1">
+                            <span className="ctooltiptext top-ctooltiptext">
                                 Sheet Updated
                             </span>
                         </div>
@@ -301,7 +300,6 @@ export function loadDataFromSheets(spreadSheetId, updateFDs, updateInvestments, 
     const refParam = `?ref=${GITHUB_REF_BRANCH}`;
 
     const fileCheckURL = baseURL + refParam;
-    console.log("token: ",GITHUB_TOKEN);
     const options = {
         method: 'GET',
         headers: {

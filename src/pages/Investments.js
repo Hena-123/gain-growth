@@ -141,7 +141,7 @@ function Investments(props) {
     }
 
     return (
-        <div className="App">
+        <div className="investments">
         {
             load ?
                 <div id="loader">
@@ -177,32 +177,38 @@ function Investments(props) {
                             <div>Your Investments</div>
                         </Col>
                         <Col xl={2} md={4} sm={4} xs={3} style={{alignSelf: 'center', padding: '0px'}} >
-                            <div style={{fontSize: '14px', color: 'white'}}>
-                                <div className="tooltip1">
+                            <div style={{fontSize: '14px'}}>
+                                <div className="ctooltip">
                                     <a
                                         href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
-                                        style={{cursor: 'pointer', color: 'white'}}
                                         target="_blank">
                                         <i className="bi bi-file-earmark-check-fill" style={{padding: '0px 10px', fontWeight: 'bold', fontSize: '20px'}}></i>
                                     </a>
-                                    <span className="tooltiptext1">
+                                    <span className="ctooltiptext top-ctooltiptext">
                                         {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
                                     </span>
                                 </div>
-                                <div className="tooltip1">
+                                <div className="ctooltip">
                                     <i className="bi bi-arrow-repeat"
-                                        style={{margin: '0px', padding: '0px 10px', fontWeight: 'bold', fontSize: '20px', cursor: 'pointer'}}
+                                        style={{margin: '0px', padding: '0px 10px', fontWeight: 'bold', fontSize: '20px'}}
                                         onClick={() => {
                                             // Reload from sheets from localstorage
                                             loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments);
                                             setLoad(true);
                                         }}
                                     ></i>
-                                    <span className="tooltiptext1">
+                                    <span className="ctooltiptext top-ctooltiptext">
                                         Reload
                                     </span>
                                 </div>
-                                {timeAgo}
+                                <div className="ctooltip">
+                                    <div style={{padding: '4px'}}>
+                                        {timeAgo}
+                                    </div>
+                                    <span className="ctooltiptext top-ctooltiptext">
+                                        Sheet Updated
+                                    </span>
+                                </div>
                             </div>
                         </Col>
                     </Row>
