@@ -86,17 +86,23 @@ export default function HowToUse() {
                                                 </a>
                                         </li>
                                         <li>
-                                            Make sure your sheet has restricted access so that only you can view or modify it.
+                                            Make sure your sheet has restricted access so that only you can view or modify it and copy the link.
                                             <div class='about_images'>
                                                 <img id='ShareAccess' src='./images/BluredShareAccess.png' className="image" alt="ShareAccess Not Found"></img>
                                         </div>
                                         </li>
                                         <li>
-                                            Now, just add your records in Fds and Investments Sheet and click on Export Data to Github plugin.
+                                            Add your records in Fds and Investments Sheet and click on Export Data to Github plugin.
+                                            <div class='about_images'>
+                                                <img id='ExportDataToGithubPlugin' src='./images/ExportDataToGithubPlugin.png' className="image" alt="ExportDataToGithubPlugin Not Found"></img>
+                                            </div>
                                         </li>
-                                        <div class='about_images'>
-                                            <img id='ExportDataToGithubPlugin' src='./images/ExportDataToGithubPlugin.png' className="image" alt="ExportDataToGithubPlugin Not Found"></img>
-                                        </div>
+                                        <li>
+                                            Go to Home and you are asked to provide datasheet name and URL, so provide suitable name and paste that <u>link copied in step-7</u> and save it.
+                                            <div class='about_images'>
+                                                <img id='InitialHome' src='./images/InitialHome.png' className="image" alt="InitialHome Not Found"></img>
+                                            </div>
+                                        </li>
                                     </ol>
                                 </li>
                                 <li>

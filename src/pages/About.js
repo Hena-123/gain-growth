@@ -1,14 +1,8 @@
-import { useEffect } from 'react';
-
 import { Container, Row, Col } from 'react-bootstrap';
 
 import './About.css';
 
 export default function About() {
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     return(
         <div className='about'>

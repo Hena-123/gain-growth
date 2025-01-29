@@ -9,8 +9,8 @@ export default function Alert(props) {
     }
 
     const alertStyle = {
-        position: 'fixed',
-        top: '100px',         // Adjust top distance
+        position: 'absolute',
+        top: '15px',         // Adjust top distance
         right: '20px',       // Adjust right distance
         zIndex: '1050',      // Ensure it's above other elements
     };
