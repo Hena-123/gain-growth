@@ -10,6 +10,9 @@ function filterDataByValue(data, field, value) {
 }
 
 function filterData(data, keyList){
+    if(data === undefined || totalCount(data) < 0) {
+        return data;
+    }
     return data.map(item => {
         var newItem = {};
         keyList.forEach(k => newItem[k]=item[k]);

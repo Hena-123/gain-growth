@@ -147,9 +147,9 @@ function Fds(props) {
                 </div>
             :
                 <Container>
-                    <Row>
+                    <Row className='header'>
                         <Col xl={2} md={4} sm={4} xs={3} style={{textAlign: 'left', padding: '0px'}}>
-                            <div clas="dropdown">
+                            <div className="dropdown">
                                 <button className="button-17 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="year-dropdown">
                                 </button>
                                 <ul className="dropdown-menu">
@@ -171,42 +171,39 @@ function Fds(props) {
                                 </ul>
                             </div>
                         </Col>
-                        <Col xl={8} md={4} sm={4} xs={6}  className="pageTitle">
+                        <Col xl={8} md={4} sm={4} xs={6} className="pageTitle" style={{padding: '0px'}}>
                             <div>Your Fixed Deposits</div>
                         </Col>
-                        <Col xl={2} md={4} sm={4} xs={3}  style={{alignSelf: 'center', padding: '0px'}}>
-                            <div style={{fontSize: '14px'}}>
-                                <div className="ctooltip">
-                                    <a
-                                        href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
-                                        target="_blank">
-                                        <i className="bi bi-file-earmark-check-fill" style={{padding: '0px 10px', fontWeight: 'bold', fontSize: '20px'}}></i>
-                                    </a>
-                                    <span className="ctooltiptext top-ctooltiptext">
-                                        {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
-                                    </span>
+                        <Col xl={2} md={4} sm={4} xs={3} className="right-col-headLine">
+                            <div className="ctooltip">
+                                <a
+                                    href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
+                                    target="_blank">
+                                    <i className="bi bi-file-earmark-check-fill"></i>
+                                </a>
+                                <span className="ctooltiptext top-ctooltiptext">
+                                    {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
+                                </span>
+                            </div>
+                            <div className="ctooltip" id="reload">
+                                <i className="bi bi-arrow-repeat"
+                                    onClick={() => {
+                                        // Reload from sheets from localstorage
+                                        loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments, props.cleanUpAll, props.setDataAvailability);
+                                        setLoad(true);
+                                    }}
+                                ></i>
+                                <span className="ctooltiptext top-ctooltiptext">
+                                    Reload
+                                </span>
+                            </div>
+                            <div className="ctooltip" id="timeAgo">
+                                <div>
+                                    {timeAgo}
                                 </div>
-                                <div className="ctooltip">
-                                    <i className="bi bi-arrow-repeat"
-                                        style={{margin: '0px', padding: '0px 10px', fontWeight: 'bold', fontSize: '20px'}}
-                                        onClick={() => {
-                                            // Reload from sheets from localstorage
-                                            loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments, props.cleanUpAll, props.setDataAvailability);
-                                            setLoad(true);
-                                        }}
-                                    ></i>
-                                    <span className="ctooltiptext top-ctooltiptext">
-                                        Reload
-                                    </span>
-                                </div>
-                                <div className="ctooltip">
-                                    <div style={{padding: '4px'}}>
-                                        {timeAgo}
-                                    </div>
-                                    <span className="ctooltiptext top-ctooltiptext">
-                                        Sheet Updated
-                                    </span>
-                                </div>
+                                <span className="ctooltiptext top-ctooltiptext">
+                                    Sheet Updated
+                                </span>
                             </div>
                         </Col>
                     </Row>

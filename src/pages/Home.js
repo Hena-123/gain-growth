@@ -148,8 +148,8 @@ function Home(props) {
                         Welcome to Gain Growth
                     </div>
                 </Row>
-                <Row style={{margin: '0px', borderRadius: '10px', boxShadow: 'inset 0 0 50px rgba(255, 255, 255, 0.287)', padding: '8px'}}>
-                    <Col xl={9} md={12} sm={12} xs={12} style={{alignSelf: 'center', textAlign: 'left', fontSize: '20px'}}>
+                <Row className='row-headLine'>
+                    <Col xl={9} md={12} sm={12} xs={5} className="left-col-headLine">
                         <div className="ctooltip">
                             <a
                                 href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
@@ -160,36 +160,36 @@ function Home(props) {
                                 {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + (fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : "")}
                             </span>
                         </div>
-                        {fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : ""}
+                        <div>
+                            {fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : ""}
+                        </div>
                     </Col>
-                    <Col xl={3} md={12} sm={12} xs={12} style={{textAlign: 'right'}}>
-                        <div className="ctooltip">
-                            <button
-                                style={{padding: '0px', background: 'none', border: 'none'}}
-                                onClick={() => {
-                                    setIsDataHandlerActive(true);
-                                    setEditSheet(true);
-                                }}>
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
+                    <Col xl={3} md={12} sm={12} xs={7} className="right-col-headLine">
+                        <div className="ctooltip" id="editSheet">
+                            <i class="bi bi-pencil-square"
+                            onClick={() => {
+                                setIsDataHandlerActive(true);
+                                setEditSheet(true);
+                            }}
+                            ></i>
                             <span className="ctooltiptext top-ctooltiptext">
                                 Edit your sheet
                             </span>
                         </div>
-                        <div className="ctooltip">
+                        <div className="ctooltip" id="reload">
                             <i className="bi bi-arrow-repeat"
-                                style={{margin: '0px'}}
                                 onClick={() => {
                                     // Reload from sheets from localstorage
                                     setIsDataHandlerActive(true);
-                                }}>
+                                }}
+                                >
                             </i>
                             <span className="ctooltiptext top-ctooltiptext">
                                 Reload
                             </span>
                         </div>
-                        <div className="ctooltip">
-                            <div style={{padding: '4px'}}>
+                        <div className="ctooltip" id="timeAgo">
+                            <div>
                                 {timeAgo}
                             </div>
                             <span className="ctooltiptext top-ctooltiptext">
@@ -202,13 +202,13 @@ function Home(props) {
             {
                 invalidSheet ? 
                     <div className="invalidContainer">
-                        <img className="invalidSheet" onClick={() => navigate('/howtouse')} src="./images/Invalid_Sheet.png" alt="Invalid Sheet"></img>
+                        <img className="invalidSheet" style={{cursor: 'pointer'}} onClick={() => navigate('/howtouse')} src="./images/Invalid_Sheet.png" alt="Invalid Sheet"></img>
                     </div>
                 :
                 (
                     noSheetAvailable ?
                         <div className="noSheetContainer">
-                            <img className="noSheetAvailable" onClick={() => navigate('/howtouse')} src="./images/No_Sheet_Available.png" alt="No Sheet Available"></img>
+                            <img className="noSheetAvailable" style={{cursor: 'pointer'}} onClick={() => navigate('/howtouse')} src="./images/No_Sheet_Available.png" alt="No Sheet Available"></img>
                         </div>
                         :
                     (

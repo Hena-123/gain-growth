@@ -22,10 +22,6 @@ function DashboardWidget(props) {
                 case 'TOTAL_INVESTMENTS_COUNT':
                     setDisplayData(filterDataByValue(props.data, props.config["groupBy"], (props.year !== undefined ? props.year : undefined)));
                     break;
-                case 'TOTAL_GAIN_OVER_YEAR':
-                    response = totalGainByField(props.data, props.config["fields"], props.config["groupBy"],  props.config["sumWith"], (props.year !== undefined ? props.year : undefined));
-                    setDisplayData(filterData(response.records, props.fieldsToDisplay));
-                    break;
                 case 'TOTAL_MATURED_COUNT_OVER_YEAR':
                     response = totalMaturedByField(props.data, props.config["fields"], props.config["groupBy"],  props.config["sumWith"], (props.year !== undefined ? props.year : undefined));
                     setDisplayData(filterData(response.records, props.fieldsToDisplay));

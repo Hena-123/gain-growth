@@ -64,6 +64,11 @@
     height: 100px;
 }
 
+#fields {
+    height: 200px;
+    padding: 10px;
+}
+
 .about_images #ExportDataToGithubPlugin{
     height: 180px;
 }
@@ -77,16 +82,34 @@
     height: 400px;
 }
 .about_images #InitialHome{
-    height: 350px;
+    height: 400px;
+}
+.about_images #SuccessHomePage{
+    height: 400px;
 }
 
 @media (max-width: 480px) {
+    .image {
+        padding: 20px 20px;
+    }
     .about_images #ExportDataToGithubPlugin{
         height: 120px;
     }
     .about_images #ExtensionAppScript{
         height: 250px;
         display: block;
+    }
+    .about_images #SaveAppScript{
+        height: 270px;
+    }
+    .about_images #ShareAccess{
+        height: 400px;
+    }
+    .about_images #InitialHome{
+        height: 400px;
+    }
+    .about_images #SuccessHomePage{
+        height: 400px;
     }
 }
 @media (min-width: 481px) and (max-width: 768px) {

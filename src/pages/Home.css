@@ -10,33 +10,98 @@
     font-size: 6vw;
     color: white;
 }
-
-.headLine {
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    font-weight: 300;
-    font-size: 30px;
-    color: white;
+.row-headLine {
+    margin: 0px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.287);
+    padding: 8px;
 }
 
-[class*="row"] {
-    margin: 15px;
+.left-col-headLine {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 20px;
 }
-
-.sheet-settings {
-    list-style-type: none;
-    font-size: 14px;
-    color: white;
+.right-col-headLine {
+    display: flex;
+    justify-content: flex-end;
+}
+.right-col-headLine #editSheet button {
+    padding: 0px;
+    background: none;
+    border: none;
+}
+.right-col-headLine #reload i {
     margin: 0px;
 }
-.sheet-settings li {
-    display: inline;
-    justify-content: center;
-    align-items: center;
+.right-col-headLine #timeAgo div {
+    padding: 4px;
+    font-size: 16px;
+}
+
+[class*="row"]:not([class*="titlebar-row"]) {
+    margin: 15px;
 }
 
 .home {
     position: relative;
+}
+
+@media (max-width: 480px) {
+    [class*="row"]:not([class*="titlebar-row"]) {
+        margin: 2px;
+    }
+    .row-headLine {
+        padding: 2px;
+    }
+    .right-col-headLine #timeAgo div {
+        padding: 4px;
+        font-size: 8px;
+    }
+    .left-col-headLine {
+        font-size: 12px;
+    }
+    .alert {
+        padding: 10px !important;
+    }
+    .alert .close {
+        font-size: 10px;
+        padding: 10px;
+    }
+    #alertMessage p {
+        font-size: 10px;
+    }
+    #alertMessage p .c-code {
+        font-size: 10px;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    [class*="row"]:not([class*="titlebar-row"]) {
+        margin: 5px;
+    }
+    .row-headLine {
+        padding: 4px;
+    }
+    .left-col-headLine {
+        font-size: 15px;
+    }
+    .right-col-headLine #timeAgo div {
+        padding: 4px;
+        font-size: 12px;
+    }
+}
+@media (min-width: 769px) and (max-width: 990px) {
+    [class*="row"]:not([class*="titlebar-row"]) {
+        margin: 10px;
+    }
+    .row-headLine {
+        padding: 6px;
+    }
+    .left-col-headLine {
+        font-size: 17px;
+    }
+    .right-col-headLine #timeAgo div {
+        padding: 4px;
+        font-size: 16px;
+    }
 }

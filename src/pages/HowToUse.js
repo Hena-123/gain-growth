@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef} from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -6,12 +6,18 @@ import './HowToUse.css';
 
 export default function HowToUse() {
 
+    const sectionRef = useRef(null);
+
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+        setTimeout(() => {
+            if (sectionRef.current) {
+                sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
+    }, [])
 
     return(
-        <div className='howToUse'>
+        <div className='howToUse' ref={sectionRef}>
             <Container>
                 <Row>
                     <Col xl={12}>
@@ -107,6 +113,9 @@ export default function HowToUse() {
                                 </li>
                                 <li>
                                     Now you will be able to see data analytics on the Home page.
+                                    <div class='about_images'>
+                                        <img id='SuccessHomePage' src='./images/SuccessHomePage.png' className="image" alt="SuccessHomePage Not Found"></img>
+                                    </div>
                                 </li>
                             </ul>
                             <div className='note'>
