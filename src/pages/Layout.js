@@ -31,14 +31,14 @@ function Layout() {
             if (sectionRef.current) {
                 sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        }, 800);
+        }, 300);
     };
 
     return (
         <>
             <div className='layout' id='layout'>
                 <Container className='titlebar' fluid>
-                    <Row>
+                    <Row className='titlebar-row'>
                         <Col xl={1} md={1} sm={1} xs={2} style={{paddingLeft: '0', paddingRight: '0'}}>
                             <img src='./images/Gain_Growth.png' style={{maxWidth: '100%', maxHeight: '100%', height: '-webkit-fill-available'}} alt="Gain Growth"></img>
                         </Col>
@@ -74,7 +74,7 @@ function Layout() {
                     </Row>
                 </Container>
                 <div className='body'>
-                    <div ref={sectionRef}>
+                    <div className='main-content' ref={sectionRef}>
                         <Outlet/>
                     </div>
                     <hr style={{color: 'white', backgroundColor: 'white', height: 1, borderColor : 'white', margin: '20px 0px 0px 0px', opacity: 0.4}}/>
@@ -82,12 +82,12 @@ function Layout() {
                         <div className='footer-div'>
                             <Container className='footer-container'>
                                 <Row>
-                                    <Col xl={8} md={8} sm={8} xs={8}>
+                                    <Col xl={8} md={8} sm={8} xs={12}>
                                         <h1 className='footer-title'>
                                             Track your wonderful betterment<br></br>using Gain Growth
                                         </h1>
                                     </Col>
-                                    <Col xl={4} md={4} sm={4} xs={4}>
+                                    <Col xl={4} md={4} sm={4} xs={12}>
                                         <div className='footer-contact'>
                                             <ul className='footer-ul'>
                                                 <li>

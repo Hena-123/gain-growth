@@ -8,7 +8,7 @@ export default function About() {
         <div className='about'>
             <Container>
                 <Row>
-                    <Col xl={7}>
+                    <Col xl={7} xs={12}>
                         <div className='aboutInfo'>
                             <h1>Gain-Growth: Elevate Your Investment Insights</h1>
                             <p>
@@ -19,8 +19,8 @@ export default function About() {
                             </p>
                         </div>
                     </Col>
-                    <Col xl={5}>
-                            <img alt="Not Found" src='./images/About_Gain_Growth.jpg' className='img'></img>
+                    <Col xl={5} xs={12}>
+                        <img alt="Not Found" src='./images/About_Gain_Growth.jpg' className='img'></img>
                     </Col>
                 </Row>
             </Container>

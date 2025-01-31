@@ -25,6 +25,13 @@
     transform: scale(1, 1);
   }
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .pageTitle {
   text-align: center;
   justify-content: center;
@@ -67,68 +74,11 @@
   height: 400px;
 }
 
-@media (max-width: 480px) {
-  .pageTitle {
-    font-size: 17px;
-  }
-  #year-dropdown {
-    font-size: 9px;
-  }
-  #refresh_button {
-    font-size: 9px;
-  }
-  #refresh_button i {
-    font-size: 10px;
-    margin: 1px;
-    -webkit-text-stroke: 1px;
-  }
-  .footer-button {
-    font-size: 8px;
-    padding: 10px 15px;
-  }
-}
-@media (min-width: 481px) and (max-width: 768px) {
-  .pageTitle {
-    font-size: 20px;
-  }
-  #year-dropdown {
-    font-size: 7px;
-  }
-  #refresh_button {
-    font-size: 7px;
-  }
-  #refresh_button i {
-    font-size: 12px;
-    margin: 2px;
-  }
-  .footer-button {
-    font-size: 8px;
-    padding: 8px 10px;
-  }
-}
-@media (min-width: 769px) and (max-width: 990px) {
-  .pageTitle {
-    font-size: 25px;
-  }
-  #year-dropdown {
-    font-size: 9px;
-  }
-  #refresh_button {
-    font-size: 9px;
-  }
-  #refresh_button i {
-    font-size: 16px;
-    margin: 3px;
-  }
-  .footer-button {
-    font-size: 10px;
-    padding: 15px 16.5px;
-  }
-}
-
 .ctooltip {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ctooltip .ctooltiptext {
   visibility: hidden;
@@ -236,10 +186,151 @@
 #copiedToClipboard::after {
   content: "";
   position: absolute;
-  top: 33%;
+  top: 30%;
   left: 106%;
   margin-left: -5px;
   border-width: 6px;
   border-style: solid;
   border-color: transparent transparent transparent #f7f7f7;
+}
+
+@media (max-width: 480px) {
+  .home, .fds, .investments, .howToUse, .about  {
+    padding: 15px 0px;
+  }
+  .pageTitle {
+    font-size: 15px;
+  }
+  #year-dropdown {
+    font-size: 6px;
+  }
+  #refresh_button {
+    font-size: 9px;
+  }
+  #refresh_button i {
+    font-size: 10px;
+    margin: 1px;
+    -webkit-text-stroke: 1px;
+  }
+  .ctooltip .ctooltiptext {
+    padding: 4px 6px;
+  }
+  .top-ctooltiptext {
+    font-size: 7px;
+  }
+  .bottom-ctooltiptext {
+    font-size: 7px;
+  }
+  .right-ctooltiptext {
+    font-size: 8px;
+  }
+  .ctooltip button, .ctooltip a i, .ctooltip i {
+    padding: 0px 5px;
+    font-size: 12px;
+  }
+  .right-ctooltiptext {
+    top: -80%;
+    left: 1080%;
+  }
+  #copiedToClipboard {
+    padding: 0px 4px;
+    border-radius: 3px;
+    font-size: 8px;
+    left: -22%;
+  }
+  #copiedToClipboard::after {
+    top: 32%;
+    left: 114%;
+    margin-left: -5px;
+    border-width: 3px;
+  }
+  .invalidSheet, .noSheetAvailable {
+    height: 250px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .home, .fds, .investments, .howToUse, .about  {
+    padding: 20px 0px;
+  }
+  .pageTitle {
+    font-size: 20px;
+  }
+  #year-dropdown {
+    font-size: 7px;
+  }
+  #refresh_button {
+    font-size: 7px;
+  }
+  #refresh_button i {
+    font-size: 12px;
+    margin: 2px;
+  }
+  .top-ctooltiptext {
+    font-size: 12px;
+  }
+  .bottom-ctooltiptext {
+    font-size: 13px;
+  }
+  .right-ctooltiptext {
+    font-size: 12px;
+  }
+  .ctooltip button, .ctooltip a i, .ctooltip i {
+    padding: 0px 10px;
+    font-size: 12px;
+  }
+  #copiedToClipboard {
+    padding: 0px 4px;
+    border-radius: 3px;
+    font-size: 8px;
+    left: -22%;
+  }
+  #copiedToClipboard::after {
+    top: 32%;
+    left: 114%;
+    margin-left: -5px;
+    border-width: 3px;
+  }
+}
+@media (min-width: 769px) and (max-width: 990px) {
+  .home, .fds, .investments, .howToUse, .about  {
+    padding: 25px 0px;
+  }
+  .pageTitle {
+    font-size: 25px;
+  }
+  #year-dropdown {
+    font-size: 9px;
+  }
+  #refresh_button {
+    font-size: 9px;
+  }
+  #refresh_button i {
+    font-size: 16px;
+    margin: 3px;
+  }
+  .top-ctooltiptext {
+    font-size: 12px;
+  }
+  .bottom-ctooltiptext {
+    font-size: 13px;
+  }
+  .right-ctooltiptext {
+    font-size: 12px;
+  }
+  .ctooltip button, .ctooltip a i, .ctooltip i {
+    padding: 0px 10px;
+    font-size: 12px;
+  }
+  #copiedToClipboard {
+    padding: 0px 4px;
+    border-radius: 3px;
+    font-size: 8px;
+    left: -22%;
+  }
+  #copiedToClipboard::after {
+    top: 32%;
+    left: 114%;
+    margin-left: -5px;
+    border-width: 3px;
+  }
 }

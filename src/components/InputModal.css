@@ -7,6 +7,16 @@
     cursor: pointer;
 }
 
+.ibutton-tooltip {
+  display: inline-flex !important;
+}
+.ibutton-tooltip .right-ctooltiptext {
+  max-width: 900px !important;
+  white-space: unset !important;
+  background-color: #3e3e3e !important;
+  color: #f7f7f7 !important;
+}
+
 .button-17 {
     margin: 15px;
     align-items: center;
@@ -49,21 +59,27 @@
 
   @media (max-width: 480px) {
     .button-17{
-      height: 20px;
+      height: 35px;
       padding: 0px 10px;
+    }
+    .ibutton-tooltip .right-ctooltiptext {
+      max-width: 200px !important;
+      top: -105%;
+      left: 850%;
+      overflow-wrap: break-word;
     }
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
     .button-17{
-      height: 25px;
+      height: 40px;
       padding: 0px 14px;
     }
   }
 
   @media (min-width: 769px) and (max-width: 990px) {
     .button-17{
-      height: 30px;
+      height: 42px;
       padding: 1px 18px;
     }
   }
