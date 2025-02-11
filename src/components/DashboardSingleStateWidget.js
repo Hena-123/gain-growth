@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { filterDataByValue, aggregateByField, totalGainByField, totalInvestedByField, totalMaturedByField, totalCount, numbertoCurrencyFormat, isCurrencyField, totalGainTillTodayAndFuture } from '../utils/utils';
+import {dashboardSingleStateWidgetSubscript} from '../utils/const/WidgetNameConst';
 
 import './DashboardSingleStateWidget.css';
 
@@ -8,22 +9,6 @@ function DashboardSingleStateWidget(props) {
 
     const [displayData, setDisplayData] = useState([]);
     const [count, setCount] = useState(-1);
-
-    var subscript = {
-        "TOTAL_FDS_COUNT": "Total FDs",
-        "TOTAL_INVESTMENTS_COUNT": "Total Investments",
-
-        "TOTAL_INVESTED_COUNT_OVER_YEAR": "Total Invested",
-        "TOTAL_MATURED_COUNT_OVER_YEAR": "Total Matured",
-        "TOTAL_GAIN_OVER_YEAR": "Total Gain Amount",
-        "TOTAL_INVESTED_OVER_YEAR": "Total Invested Amount",
-
-        "TOTAL_MATURED_OVER_YEAR": "Total Matured",
-        "INVESTED_VS_MATURED": "Invested Vs Matured",
-
-        "TOTAL_GAIN_TILL_TODAY": "Total Gain till today",
-        "TOTAL_FUTURE_GAIN": "Total Future Gain"
-    }
 
     useEffect(() => {
         var response = null;
@@ -99,7 +84,7 @@ function DashboardSingleStateWidget(props) {
                 }
                 { props.subscriptEnabled &&
                     <sub className="subscript">
-                        {subscript[props.config["name"]]}
+                        {dashboardSingleStateWidgetSubscript[props.config["name"]]}
                     </sub>
                 }
             </span>

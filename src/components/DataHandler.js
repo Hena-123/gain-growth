@@ -9,6 +9,7 @@ export default function DataHandler(props) {
 
     const [cookies, setCookie] = useCookies(['gg_spreadSheetId']);
     const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
+    const [dataUpdatedFromCookie, setDataUpdatedFromCookie] = useCookies(['gg_dataupdatedfrom']);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,6 +24,7 @@ export default function DataHandler(props) {
                         console.log("not loaded");
                     } else {
                         setUpdatedAtCookie("gg_updatedAt", Date.now());
+                        setDataUpdatedFromCookie("gg_dataupdatedfrom", "cookie");
                     }
                 })
             } else {

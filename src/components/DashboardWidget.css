@@ -15,14 +15,40 @@
 .box-shadow {
     box-shadow: inset 0 0 30px rgb(29, 38, 113, 0.3);
 }
+.padding-zero-important{
+    padding: 0px !important;
+}
 
 .drilldown {
     height: 100%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+}
+.dashboardWidgetDrilldown{
+    margin: 0px !important;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: left;
+    padding-left: 25px;
+    height: 15%;
+    background-color: white;
+    color: #1D2671;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.noBorderRadius {
+    border-radius: 0px !important;
 }
 
+.dashboardWidgetDrilldownTitle {
+    font-size: 14px;
+    /* padding: 3px 13px; */
+    align-self: center;
+}
 .table-responsive{
-    height: 100%;
+    height: 82%;
+    width: auto;
     overflow-y: auto;
     overflow-x: auto;
 }
@@ -96,12 +122,16 @@ td{
         font-size: 4px;
         padding: 5px 10px;
     }
+    #noData {
+        height: 130px;
+        font-size: 25px;
+    }
     .dashboardWidget{
         height: 160px;
         padding: 0 0 2px 0;
     }
     .dashboardWidgetTitle{
-        font-size: 14px;
+        font-size: 12px;
         padding-top: 3px;
         padding-left: 15px;
     }
@@ -130,6 +160,14 @@ td{
         font-size: 10px;
         font-weight: 400;
         padding: 3px;
+    }
+    .dashboardWidgetDrilldown{
+        font-size: 11px;
+        padding-left: 15px;
+    }
+    .dashboardWidgetDrilldownTitle {
+        font-size: 8px;
+        /* padding: 3px 5px; */
     }
 }
 
@@ -177,6 +215,10 @@ td{
         font-weight: 400;
         padding: 3px;
     }
+    .dashboardWidgetDrilldown{
+        font-size: 10px;
+        padding-left: 17px;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 990px) {
@@ -222,5 +264,9 @@ td{
         font-size: 9px;
         font-weight: 400;
         padding: 3px;
+    }
+    .dashboardWidgetDrilldown {
+        font-size: 12px;
+        padding-left: 20px;
     }
 }
