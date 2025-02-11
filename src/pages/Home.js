@@ -16,6 +16,7 @@ import DataHandler from '../components/DataHandler';
 import { extractFields, getDateDifference } from '../utils/utils'
 import { ALLOWED_DRILLDOWN_CLASS_NAMES, GITHUB_REPO, GITHUB_OWNER, GITHUB_REF_BRANCH, GITHUB_TOKEN} from '../utils/const/const';
 import  { homeWidgets } from '../utils/const/HomeConst';
+import { homeWidgetsTitles } from '../utils/const/WidgetNameConst';
 
 import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability, getDataAvailability, getInvalidSheet, setInvalidSheet } from '../app/redux/actions';
 
@@ -246,6 +247,7 @@ function Home(props) {
                                             <DashboardWidget
                                                 data={props.fds.fdData}
                                                 config={props.fds.fdMetadata['widgets']['TOTAL_FDS_COUNT']}
+                                                drilldownTitle={homeWidgetsTitles['TOTAL_FDS_COUNT']}
                                                 filter={{"widget": 'TOTAL_FDS_COUNT'}}>
                                             </DashboardWidget>
                                         </Col>
@@ -280,6 +282,7 @@ function Home(props) {
                                             <DashboardWidget
                                                 data={props.investments.investmentData}
                                                 config={props.investments.investmentMetadata['widgets']['TOTAL_INVESTMENTS_COUNT']}
+                                                drilldownTitle={homeWidgetsTitles['TOTAL_INVESTMENTS_COUNT']}
                                                 filter={{"widget": 'TOTAL_INVESTMENTS_COUNT'}}>
                                             </DashboardWidget>
                                         </Col>
