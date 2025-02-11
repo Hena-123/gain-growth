@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import { filterData, aggregateByField, numbertoCurrencyFormat, numbertoDateFormat, isCurrencyField, isDateField, totalGainByField, totalInvestedByField, filterDataByValue, totalMaturedByField } from '../utils/utils';
 
 import './DashboardWidget.css';
@@ -84,6 +88,21 @@ function DashboardWidget(props) {
                 <div className="dashboardWidgetTitle">
                     {props.title}
                 </div>
+            }
+            {
+                props.drilldownTitle &&
+                <Container className='padding-zero-important'>
+                    <Row className="dashboardWidgetDrilldown">
+                        <Col xl={12}>
+                            <div>Drilldown Preview</div>
+                        </Col>
+                    </Row>
+                    <Row className='dashboardWidgetDrilldown noBorderRadius'>
+                        <Col xl={12}>
+                            <div className="dashboardWidgetDrilldownTitle">({props.drilldownTitle})</div>
+                        </Col>
+                    </Row>
+                </Container>
             }
             {
                 displayData !== undefined && displayData.length> 0 ?

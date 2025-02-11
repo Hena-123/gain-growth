@@ -11,11 +11,12 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 import DashboardWidget from '../components/DashboardWidget';
 import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
+import DataHandler from '../components/DataHandler';
 import { getAllYears, filterDataByValue, getDateDifference } from '../utils/utils';
 import { initialStateInvestmentMetadata, yearInvestmentFields } from '../utils/const/InvestmentConst';
+import { dashboardSingleStateWidgetSubscript, investmentWidgetTitles } from '../utils/const/WidgetNameConst';
 
-import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability } from '../app/redux/actions';
-import { loadDataFromSheets } from './Home';
+import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability, setInvalidSheet } from '../app/redux/actions';
 
 import '../App.css';
 
@@ -28,6 +29,7 @@ function Investments(props) {
     const [displayData, setDisplayData] = useState([]);
     const [load, setLoad] = useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [isDataHandlerActive, setIsDataHandlerActive] = useState(false);
 
     const [totalMaturedCountOverYearDrilldown, setTotalMaturedCountOverYearDrilldown] = useState(false);
     const [totalInvestedCountOverYearDrilldown, setTotalInvestedCountOverYearDrilldown] = useState(false);
@@ -56,7 +58,10 @@ function Investments(props) {
                 unloadDrillDowns();
             }
         });
+    }, []);
 
+    // Whenever updatedAtCookie.gg_updatedAt changes
+    useEffect(() => {
         const interval = setInterval(() => {
             if(updatedAtCookie.gg_updatedAt > 0){
                 setTimeAgo(getDateDifference(new Date(updatedAtCookie.gg_updatedAt), new Date()));
@@ -67,7 +72,7 @@ function Investments(props) {
 
         //Clearing the interval
         return () => clearInterval(interval);
-    }, []);
+    }, [updatedAtCookie.gg_updatedAt]);
 
     // After data is available on UI, after loading
     useEffect(() => {
@@ -84,7 +89,6 @@ function Investments(props) {
 
     // When investmentData changes
     useEffect(() => {
-
         if(props.isDataAvailable) {
             console.log("Data Available");
             setTimeout(()=> {
@@ -131,6 +135,10 @@ function Investments(props) {
         }, 2000);
     }
 
+    const onModalClose = () => {
+        setIsDataHandlerActive(false);
+    }
+
     const unloadDrillDowns = () => {
         setTotalMaturedCountOverYearDrilldown(false);
         setTotalInvestedCountOverYearDrilldown(false);
@@ -142,6 +150,9 @@ function Investments(props) {
 
     return (
         <div className="investments">
+        { isDataHandlerActive &&
+            <DataHandler isModalOpen={false} onModalClose={onModalClose} updateFDs={props.updateFDs} updateInvestments={props.updateInvestments} cleanUpAll={props.cleanUpAll} setDataAvailability={props.setDataAvailability} setInvalidSheet={props.setInvalidSheet}></DataHandler>
+        }
         {
             load ?
                 <div id="loader">
@@ -191,8 +202,11 @@ function Investments(props) {
                                 <i className="bi bi-arrow-repeat"
                                     onClick={() => {
                                         // Reload from sheets from localstorage
-                                        loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments);
                                         setLoad(true);
+                                        setTimeout(()=> {
+                                            setLoad(false);
+                                        }, 2000);
+                                        setIsDataHandlerActive(true);
                                     }}
                                 ></i>
                                 <span className="ctooltiptext top-ctooltiptext">
@@ -215,19 +229,19 @@ function Investments(props) {
                                 year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                 data={displayData}
                                 config={datasetMetadata['widgets']['TOTAL_INVESTED_COUNT_OVER_YEAR']}
-                                superscriptEnabled={true}
-                                subscriptEnabled={true}
                                 onClick={() => {
                                         unloadDrillDowns();
                                         setTotalInvestedCountOverYearDrilldown(prev=>!prev);
-                                    }}
+                                }}
+                                superscriptEnabled={true}
+                                subscriptEnabled={true}
                                 hoverInfo={true}>
                             </DashboardSingleStateWidget>
                         </Col>
                         <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_MATURED_COUNT_OVER_YEAR">
-                            <DashboardSingleStateWidget 
-                                year={searchParams.has('year') ? searchParams.get('year'): undefined} 
-                                data={displayData} 
+                            <DashboardSingleStateWidget
+                                year={searchParams.has('year') ? searchParams.get('year'): undefined}
+                                data={displayData}
                                 config={datasetMetadata['widgets']['TOTAL_MATURED_COUNT_OVER_YEAR']}
                                 onClick={() => {
                                     unloadDrillDowns();
@@ -246,10 +260,11 @@ function Investments(props) {
                             <Row className='bounceElement' ref={scroll}>
                                 <Col xl={12} md={12} sm={12} xs={12}>
                                     <DashboardWidget
-                                        year={searchParams.has('year') ? searchParams.get('year'): undefined} 
+                                        year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                         data={displayData}
                                         config={datasetMetadata['widgets']['TOTAL_INVESTED_COUNT_OVER_YEAR']}
                                         fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                        drilldownTitle={dashboardSingleStateWidgetSubscript['TOTAL_INVESTED_COUNT_OVER_YEAR']}
                                         filter={{"widget": 'TOTAL_INVESTED_COUNT_OVER_YEAR'}}>
                                     </DashboardWidget>
                                 </Col>
@@ -265,6 +280,7 @@ function Investments(props) {
                                     data={displayData}
                                     config={datasetMetadata['widgets']['TOTAL_MATURED_COUNT_OVER_YEAR']}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={dashboardSingleStateWidgetSubscript['TOTAL_MATURED_COUNT_OVER_YEAR']}
                                     filter={{"widget": 'TOTAL_MATURED_COUNT_OVER_YEAR'}}>
                                 </DashboardWidget>
                             </Col>
@@ -273,7 +289,7 @@ function Investments(props) {
                     <Row>
                         <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_INVESTED_OVER_YEAR">
                             <DashboardSingleStateWidget
-                                year={searchParams.has('year') ? searchParams.get('year'): undefined} 
+                                year={searchParams.has('year') ? searchParams.get('year'): undefined}
                                 data={displayData}
                                 config={datasetMetadata['widgets']['TOTAL_INVESTED_OVER_YEAR']}
                                 superscriptEnabled={true}
@@ -299,7 +315,7 @@ function Investments(props) {
                                 data={displayData}
                                 config={datasetMetadata['widgets']['INVESTED_BY_MONTH']}
                                 investField={yearInvestmentFields[0]}
-                                title="Invested Investments by Month"
+                                title={investmentWidgetTitles['INVESTED_BY_MONTH']}
                                 onClick={(element) => {
                                     unloadDrillDowns();
                                     setInvestedByMonthDrilldown(prev=>!prev);
@@ -313,7 +329,7 @@ function Investments(props) {
                                 data={displayData}
                                 config={datasetMetadata['widgets']['INVESTED_BY_INVESTMENT_HOLDER']}
                                 investField={yearInvestmentFields[0]}
-                                title="Invested Investments by Investment Holder"
+                                title={investmentWidgetTitles['INVESTED_BY_INVESTMENT_HOLDER']}
                                 onClick={(element) => {
                                     unloadDrillDowns();
                                     setInvestedByInvestmentHolderDrilldown(prev=>!prev);
@@ -333,6 +349,7 @@ function Investments(props) {
                                     config={datasetMetadata['widgets']['INVESTED_BY_MONTH']}
                                     investField={yearInvestmentFields[0]}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={investmentWidgetTitles['INVESTED_BY_MONTH'] + ", " + selectedRowValue}
                                     filter={{"widget": 'INVESTED_BY_MONTH', "row_value": selectedRowValue}}>
                                 </DashboardWidget>
                             </Col>
@@ -349,6 +366,7 @@ function Investments(props) {
                                     config={datasetMetadata['widgets']['INVESTED_BY_INVESTMENT_HOLDER']}
                                     investField={yearInvestmentFields[0]}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={investmentWidgetTitles['INVESTED_BY_INVESTMENT_HOLDER'] + ", " + selectedRowValue}
                                     filter={{"widget": 'INVESTED_BY_INVESTMENT_HOLDER', "row_value": selectedRowValue}}>
                                 </DashboardWidget>
                             </Col>
@@ -361,7 +379,7 @@ function Investments(props) {
                                 data={displayData}
                                 config={datasetMetadata['widgets']['INVESTED_THAT_MATURED_IN']}
                                 investField={yearInvestmentFields[0]}
-                                title="Invested Investments Matured in Year"
+                                title={investmentWidgetTitles['INVESTED_THAT_MATURED_IN']}
                                 onClick={(element) => {
                                     unloadDrillDowns();
                                     setInvestedThatMaturedInDrilldown(prev=>!prev);
@@ -381,6 +399,7 @@ function Investments(props) {
                                     config={datasetMetadata['widgets']['INVESTED_THAT_MATURED_IN']}
                                     investField={yearInvestmentFields[0]}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={investmentWidgetTitles['INVESTED_THAT_MATURED_IN'] + ", " + selectedRowValue}
                                     filter={{"widget": 'INVESTED_THAT_MATURED_IN', "row_value": selectedRowValue}}>
                                 </DashboardWidget>
                             </Col>
@@ -396,4 +415,4 @@ const mapStateToProps = state => {
     const { fds, investments, isDataAvailable, updatedAt} = state.connectReducer.dataset;
     return { 'fds': fds, 'investments': investments, 'isDataAvailable': isDataAvailable, 'updatedAt': updatedAt};
 }
-export default connect(mapStateToProps, {updateFDs, updateInvestments, cleanUpAll, setDataAvailability})(Investments);
+export default connect(mapStateToProps, {updateFDs, updateInvestments, cleanUpAll, setDataAvailability, setInvalidSheet})(Investments);

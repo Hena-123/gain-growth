@@ -21,6 +21,7 @@ function InputModal(props) {
     const [fileLinkCookie, setFileLinkCookie] = useCookies(['gg_filelink']);
     const [fileNameCookie, setFileNameCookie] = useCookies(['gg_filename']);
     const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
+    const [dataUpdatedFromCookie, setDataUpdatedFromCookie] = useCookies(['gg_dataupdatedfrom']);
 
     const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ function InputModal(props) {
             setFileLinkCookie("gg_filelink", filePath);
             setFileNameCookie("gg_filename", fileName);
             setUpdatedAtCookie("gg_updatedAt", Date.now());
+            setDataUpdatedFromCookie("gg_dataupdatedfrom", "sheet");
             fileControlElement.value="";
 
             var response = loadDataFromSheets(spreadSheetId, props.updateFDs, props.updateInvestments, props.cleanUpAll, props.setDataAvailability, props.setInvalidSheet);

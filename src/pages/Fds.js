@@ -11,11 +11,12 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 import DashboardWidget from '../components/DashboardWidget';
 import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
+import DataHandler from '../components/DataHandler';
 import { getAllYears, filterDataByValue, getDateDifference } from '../utils/utils';
 import { initialStateFDMetadata, yearFDFields } from '../utils/const/FDConst';
+import { dashboardSingleStateWidgetSubscript, fdWidgetTitles } from '../utils/const/WidgetNameConst';
 
-import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability } from '../app/redux/actions';
-import { loadDataFromSheets } from './Home';
+import { updateFDs, updateInvestments, cleanUpAll, setDataAvailability, setInvalidSheet } from '../app/redux/actions';
 
 import '../App.css';
 
@@ -28,6 +29,7 @@ function Fds(props) {
     const [displayData, setDisplayData] = useState([]);
     const [load, setLoad] = useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [isDataHandlerActive, setIsDataHandlerActive] = useState(false);
 
     const [totalMaturedCountOverYearDrilldown, setTotalMaturedCountOverYearDrilldown] = useState(false);
     const [totalInvestedCountOverYearDrilldown, setTotalInvestedCountOverYearDrilldown] = useState(false);
@@ -56,7 +58,10 @@ function Fds(props) {
                 unloadDrillDowns();
             }
         });
+    }, []);
 
+    // Whenever updatedAtCookie.gg_updatedAt changes
+    useEffect(() => {
         const interval = setInterval(() => {
             if(updatedAtCookie.gg_updatedAt > 0){
                 setTimeAgo(getDateDifference(new Date(updatedAtCookie.gg_updatedAt), new Date()));
@@ -67,7 +72,7 @@ function Fds(props) {
 
         //Clearing the interval
         return () => clearInterval(interval);
-    }, []);
+    }, [updatedAtCookie.gg_updatedAt]);
 
     // After data is available on UI, after loading
     useEffect(() => {
@@ -129,6 +134,10 @@ function Fds(props) {
         }, 2000);
     }
 
+    const onModalClose = () => {
+        setIsDataHandlerActive(false);
+    }
+
     const unloadDrillDowns = () => {
         setTotalMaturedCountOverYearDrilldown(false);
         setTotalInvestedCountOverYearDrilldown(false);
@@ -140,6 +149,9 @@ function Fds(props) {
 
     return (
         <div className="fds">
+        { isDataHandlerActive &&
+            <DataHandler isModalOpen={false} onModalClose={onModalClose} updateFDs={props.updateFDs} updateInvestments={props.updateInvestments} cleanUpAll={props.cleanUpAll} setDataAvailability={props.setDataAvailability} setInvalidSheet={props.setInvalidSheet}></DataHandler>
+        }
         {
             load ?
                 <div id="loader">
@@ -189,8 +201,11 @@ function Fds(props) {
                                 <i className="bi bi-arrow-repeat"
                                     onClick={() => {
                                         // Reload from sheets from localstorage
-                                        loadDataFromSheets(props.sheets, props.updateFDs, props.updateInvestments, props.cleanUpAll, props.setDataAvailability);
                                         setLoad(true);
+                                        setTimeout(()=> {
+                                            setLoad(false);
+                                        }, 2000);
+                                        setIsDataHandlerActive(true);
                                     }}
                                 ></i>
                                 <span className="ctooltiptext top-ctooltiptext">
@@ -247,6 +262,7 @@ function Fds(props) {
                                         data={displayData}
                                         config={datasetMetadata['widgets']['TOTAL_INVESTED_COUNT_OVER_YEAR']}
                                         fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                        drilldownTitle={dashboardSingleStateWidgetSubscript['TOTAL_INVESTED_COUNT_OVER_YEAR']}
                                         filter={{"widget": 'TOTAL_INVESTED_COUNT_OVER_YEAR'}}>
                                     </DashboardWidget>
                                 </Col>
@@ -262,6 +278,7 @@ function Fds(props) {
                                     data={displayData}
                                     config={datasetMetadata['widgets']['TOTAL_MATURED_COUNT_OVER_YEAR']}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={dashboardSingleStateWidgetSubscript['TOTAL_MATURED_COUNT_OVER_YEAR']}
                                     filter={{"widget": 'TOTAL_MATURED_COUNT_OVER_YEAR'}}>
                                 </DashboardWidget>
                             </Col>
@@ -296,7 +313,7 @@ function Fds(props) {
                                 data={displayData}
                                 config={datasetMetadata['widgets']['INVESTED_BY_MONTH']}
                                 investField={yearFDFields[0]}
-                                title="Invested FDs by Month"
+                                title={fdWidgetTitles['INVESTED_BY_MONTH']}
                                 onClick={(element) => {
                                     unloadDrillDowns();
                                     setInvestedByMonthDrilldown(prev=>!prev);
@@ -310,7 +327,7 @@ function Fds(props) {
                                 data={displayData}
                                 config={datasetMetadata['widgets']['INVESTED_BY_ACCOUNT_HOLDER']}
                                 investField={yearFDFields[0]}
-                                title="Invested FDs by Account Holder"
+                                title={fdWidgetTitles['INVESTED_BY_ACCOUNT_HOLDER']}
                                 onClick={(element) => {
                                     unloadDrillDowns();
                                     setInvestedByAccountHolderDrilldown(prev=>!prev);
@@ -330,6 +347,7 @@ function Fds(props) {
                                     config={datasetMetadata['widgets']['INVESTED_BY_MONTH']}
                                     investField={yearFDFields[0]}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={fdWidgetTitles['INVESTED_BY_MONTH'] + ", " + selectedRowValue}
                                     filter={{"widget": 'INVESTED_BY_MONTH', "row_value": selectedRowValue}}>
                                 </DashboardWidget>
                             </Col>
@@ -346,6 +364,7 @@ function Fds(props) {
                                     config={datasetMetadata['widgets']['INVESTED_BY_ACCOUNT_HOLDER']}
                                     investField={yearFDFields[0]}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={fdWidgetTitles['INVESTED_BY_ACCOUNT_HOLDER'] + ", " + selectedRowValue}
                                     filter={{"widget": 'INVESTED_BY_ACCOUNT_HOLDER', "row_value": selectedRowValue}}>
                                 </DashboardWidget>
                             </Col>
@@ -358,7 +377,7 @@ function Fds(props) {
                                 data={displayData}
                                 config={datasetMetadata['widgets']['INVESTED_THAT_MATURED_IN']}
                                 investField={yearFDFields[0]}
-                                title="Invested FDs Matured in Year"
+                                title={fdWidgetTitles['INVESTED_THAT_MATURED_IN']}
                                 onClick={(element) => {
                                     unloadDrillDowns();
                                     setInvestedThatMaturedInDrilldown(prev=> !prev);
@@ -378,6 +397,7 @@ function Fds(props) {
                                     config={datasetMetadata['widgets']['INVESTED_THAT_MATURED_IN']}
                                     investField={yearFDFields[0]}
                                     fieldsToDisplay={datasetMetadata['widgets']['ALL'].fields}
+                                    drilldownTitle={fdWidgetTitles['INVESTED_THAT_MATURED_IN'] + ", " + selectedRowValue}
                                     filter={{"widget": 'INVESTED_THAT_MATURED_IN', "row_value": selectedRowValue}}>
                                 </DashboardWidget>
                             </Col>
@@ -394,4 +414,4 @@ const mapStateToProps = state => {
     const { fds, investments, isDataAvailable, updatedAt} = state.connectReducer.dataset;
     return { 'fds': fds, 'investments': investments, 'isDataAvailable': isDataAvailable, 'updatedAt': updatedAt};
 }
-export default connect(mapStateToProps, {updateFDs, updateInvestments, cleanUpAll, setDataAvailability})(Fds);
+export default connect(mapStateToProps, {updateFDs, updateInvestments, cleanUpAll, setDataAvailability, setInvalidSheet})(Fds);

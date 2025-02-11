@@ -5,7 +5,8 @@ export default function Alert(props) {
     const alertType = {
         'success': "alert-success",
         'error': "alert-danger",
-        'warning': "alert-warning"
+        'warning': "alert-warning",
+        'primary': "alert-primary"
     }
 
     const alertStyle = {

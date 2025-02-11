@@ -29,6 +29,7 @@ function Home(props) {
     const [fileLinkCookie, setFileLinkCookie] = useCookies(['gg_filelink']);
     const [fileNameCookie, setFileNameCookie] = useCookies(['gg_filename']);
     const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
+    const [dataUpdatedFromCookie, setDataUpdatedFromCookie] = useCookies(['gg_dataupdatedfrom']);
     const [timeAgo, setTimeAgo] = useState('');
     const [isDataHandlerActive, setIsDataHandlerActive] = useState(false);
     const [editSheet, setEditSheet] = useState(false);
@@ -57,19 +58,9 @@ function Home(props) {
                 unloadDrillDowns();
             }
         });
-
-        const interval = setInterval(() => {
-            if(updatedAtCookie.gg_updatedAt > 0){
-                setTimeAgo(getDateDifference(new Date(updatedAtCookie.gg_updatedAt), new Date()));
-            } else {
-                setTimeAgo('0s ago');
-            }
-        }, 1000);
-
-        //Clearing the interval
-        return () => clearInterval(interval);
     }, []);
 
+    // Whenever updatedAtCookie.gg_updatedAt changes
     useEffect(() => {
         const interval = setInterval(() => {
             if(updatedAtCookie.gg_updatedAt > 0){
@@ -81,7 +72,7 @@ function Home(props) {
 
         //Clearing the interval
         return () => clearInterval(interval);
-    }, []);
+    }, [updatedAtCookie.gg_updatedAt]);
 
     // When fdData & investmentData changes
     useEffect(() => {
@@ -90,7 +81,11 @@ function Home(props) {
             setInvalidSheet(false);
             setNoSheetAvailable(false);
             setTimeout(()=> {
-                openAlert("<p style='margin: 0px'><strong>Success:</strong> Data has been successfully loaded from Google Sheets.</p>", "success");
+                if(dataUpdatedFromCookie.gg_dataupdatedfrom == "cookie") {
+                    openAlert("<p style='margin: 0px'><strong>Info:</strong> Data retrieval was successful.</p>", "primary");
+                } else {
+                    openAlert("<p style='margin: 0px'><strong>Success:</strong> Data has been successfully loaded from Google Sheets.</p>", "success");
+                }
                 setLoad(false);
             }, 2000);
         }
@@ -180,6 +175,10 @@ function Home(props) {
                             <i className="bi bi-arrow-repeat"
                                 onClick={() => {
                                     // Reload from sheets from localstorage
+                                    setLoad(true);
+                                    setTimeout(()=> {
+                                        setLoad(false);
+                                    }, 2000);
                                     setIsDataHandlerActive(true);
                                 }}
                                 >
