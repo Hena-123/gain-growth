@@ -24,5 +24,9 @@ const investmentWidgetTitles = {
     "INVESTED_THAT_MATURED_IN": "Invested Investments Matured in Year",
     "INVESTED_BY_INVESTMENT_HOLDER": "Invested Investments by Investment Holder"
 }
+const homeWidgetsTitles = {
+    'TOTAL_FDS_COUNT': "Total Fds",
+    'TOTAL_INVESTMENTS_COUNT': "Total Investments"
+}
 
-export {dashboardSingleStateWidgetSubscript, fdWidgetTitles, investmentWidgetTitles}
+export {dashboardSingleStateWidgetSubscript, fdWidgetTitles, investmentWidgetTitles, homeWidgetsTitles}

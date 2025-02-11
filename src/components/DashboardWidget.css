@@ -47,7 +47,7 @@
     align-self: center;
 }
 .table-responsive{
-    height: 82%;
+    height: 315px;
     width: auto;
     overflow-y: auto;
     overflow-x: auto;
@@ -114,6 +114,9 @@ td{
 }
 
 @media (max-width: 480px) {
+    .table-responsive{
+        height: 130px;
+    }
     td{
         font-size: 5px;
         padding: 5px;
