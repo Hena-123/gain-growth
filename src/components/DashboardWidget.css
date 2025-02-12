@@ -115,7 +115,7 @@ td{
 
 @media (max-width: 480px) {
     .table-responsive{
-        height: 130px;
+        height: 167px;
     }
     td{
         font-size: 5px;
@@ -130,7 +130,7 @@ td{
         font-size: 25px;
     }
     .dashboardWidget{
-        height: 160px;
+        height: 200px;
         padding: 0 0 2px 0;
     }
     .dashboardWidgetTitle{
