@@ -163,6 +163,11 @@ function Fds(props) {
                 <Container>
                     { isMobile &&
                         <>
+                            <Row style={{padding: '0px 10px'}}>
+                                <Col xs={12} className="pageTitle">
+                                    <div>Your Fixed Deposits</div>
+                                </Col>
+                            </Row>
                             <Row className='header'>
                                 <Col xs={6} style={{textAlign: 'left', padding: '0px'}}>
                                     <div className="dropdown">
@@ -221,11 +226,6 @@ function Fds(props) {
                                             Sheet Updated
                                         </span>
                                     </div>
-                                </Col>
-                            </Row>
-                            <Row style={{padding: '0px 10px'}}>
-                                <Col xs={12} className="pageTitle">
-                                    <div>Your Fixed Deposits</div>
                                 </Col>
                             </Row>
                         </>
