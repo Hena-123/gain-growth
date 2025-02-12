@@ -7,6 +7,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useMediaQuery } from 'react-responsive';
 
 import DashboardWidget from '../components/DashboardWidget';
 import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
@@ -42,6 +43,7 @@ function Home(props) {
     const [load, setLoad] = useState(true);
     const [noSheetAvailable, setNoSheetAvailable] = useState(false);
     const navigate = useNavigate();
+    const isMobile = useMediaQuery({query: "(max-width: 480px)"});
 
     // When onClick is performed, on Component render (initial render)
     useEffect((e) => {
@@ -152,7 +154,7 @@ function Home(props) {
                                 target="_blank">
                                 <i className="bi bi-file-earmark-check-fill"></i>
                             </a>
-                            <span className="ctooltiptext top-ctooltiptext">
+                            <span className={"ctooltiptext " + (isMobile ?  "top-leftaligned-ctooltiptext" : "top-ctooltiptext")}>
                                 {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + (fileNameCookie.gg_filename !== undefined ? fileNameCookie.gg_filename : "")}
                             </span>
                         </div>
