@@ -14,6 +14,7 @@ export default function Alert(props) {
         top: '15px',         // Adjust top distance
         right: '20px',       // Adjust right distance
         zIndex: '1050',      // Ensure it's above other elements
+        margin: '0px'
     };
     var message = props.message !== undefined ? props.message : "";
 
@@ -25,7 +26,7 @@ export default function Alert(props) {
             const timer = setTimeout(() => {
                 props.onClose(); // Automatically hide the alert after 3 seconds
                 console.log("closed");
-            }, 5000);
+            }, 5000000);
             return () => clearTimeout(timer); // Clean up the timer on unmount
         }
     }, [props.show]);

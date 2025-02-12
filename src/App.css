@@ -195,14 +195,18 @@
 }
 
 @media (max-width: 480px) {
+  .header {
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.287);
+    border-radius: 10px;
+  }
   .home, .fds, .investments, .howToUse, .about  {
     padding: 15px 0px;
   }
   .pageTitle {
-    font-size: 15px;
+    font-size: 20px;
   }
   #year-dropdown {
-    font-size: 7px;
+    font-size: 10px;
   }
   #refresh_button {
     font-size: 9px;

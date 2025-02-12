@@ -82,12 +82,12 @@ function Layout() {
                         <div className='footer-div'>
                             <Container className='footer-container'>
                                 <Row>
-                                    <Col xl={8} md={8} sm={8} xs={12}>
+                                    <Col xl={8} md={8} sm={8} xs={12} style={{margin: '5px'}}>
                                         <h1 className='footer-title'>
                                             Track your wonderful betterment<br></br>using Gain Growth
                                         </h1>
                                     </Col>
-                                    <Col xl={4} md={4} sm={4} xs={12}>
+                                    <Col xl={4} md={4} sm={4} xs={12} style={{margin: '5px'}}>
                                         <div className='footer-contact'>
                                             <ul className='footer-ul'>
                                                 <li>
