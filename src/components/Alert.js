@@ -26,7 +26,7 @@ export default function Alert(props) {
             const timer = setTimeout(() => {
                 props.onClose(); // Automatically hide the alert after 3 seconds
                 console.log("closed");
-            }, 5000000);
+            }, 5000);
             return () => clearTimeout(timer); // Clean up the timer on unmount
         }
     }, [props.show]);
