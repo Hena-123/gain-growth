@@ -65,7 +65,10 @@
         font-size: 16px;
     }
     .alert {
-        padding: 10px !important;
+        padding: 8px !important;
+    }
+    .alert-dismissible {
+        padding-right: 25px !important;
     }
     .alert .close {
         font-size: 10px;

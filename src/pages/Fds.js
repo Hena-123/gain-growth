@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import BounceLoader from "react-spinners/BounceLoader";
+import { useMediaQuery } from 'react-responsive';
 
 import DashboardWidget from '../components/DashboardWidget';
 import DashboardSingleStateWidget from '../components/DashboardSingleStateWidget';
@@ -43,6 +44,7 @@ function Fds(props) {
     const [updatedAtCookie, setUpdatedAtCookie] = useCookies(['gg_updatedAt']);
     const [timeAgo, setTimeAgo] = useState('');
     const navigate = useNavigate();
+    const isMobile = useMediaQuery({query: "(max-width: 480px)"});
 
     // When onClick is performed, on Component render (initial render)
     useEffect(() => {
@@ -159,69 +161,140 @@ function Fds(props) {
                 </div>
             :
                 <Container>
-                    <Row className='header'>
-                        <Col xl={2} md={4} sm={4} xs={3} style={{textAlign: 'left', padding: '0px'}}>
-                            <div className="dropdown">
-                                <button className="button-17 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="year-dropdown">
-                                </button>
-                                <ul className="dropdown-menu">
-                                {
-                                    getAllYears(data, yearFDFields).sort().reverse().map(i=>
-                                        <li key={i}>
-                                            <a id={i} key={i} className="dropdown-item" onClick={() => {
-                                                    setSearchParams({"year": i});
-                                                    applyfilter(i);
-                                                    document.getElementById("year-dropdown").innerHTML = "Year-"+i;
-                                                    loadBounceElement();
-                                                    unloadDrillDowns();
-                                                }}>
-                                                {i}
-                                            </a>
-                                        </li>
-                                    )
-                                }
-                                </ul>
-                            </div>
-                        </Col>
-                        <Col xl={8} md={4} sm={4} xs={6} className="pageTitle" style={{padding: '0px'}}>
-                            <div>Your Fixed Deposits</div>
-                        </Col>
-                        <Col xl={2} md={4} sm={4} xs={3} className="right-col-headLine">
-                            <div className="ctooltip">
-                                <a
-                                    href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
-                                    target="_blank">
-                                    <i className="bi bi-file-earmark-check-fill"></i>
-                                </a>
-                                <span className="ctooltiptext top-ctooltiptext">
-                                    {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
-                                </span>
-                            </div>
-                            <div className="ctooltip" id="reload">
-                                <i className="bi bi-arrow-repeat"
-                                    onClick={() => {
-                                        // Reload from sheets from localstorage
-                                        setLoad(true);
-                                        setTimeout(()=> {
-                                            setLoad(false);
-                                        }, 2000);
-                                        setIsDataHandlerActive(true);
-                                    }}
-                                ></i>
-                                <span className="ctooltiptext top-ctooltiptext">
-                                    Reload
-                                </span>
-                            </div>
-                            <div className="ctooltip" id="timeAgo">
-                                <div>
-                                    {timeAgo}
+                    { isMobile &&
+                        <>
+                            <Row className='header'>
+                                <Col xs={6} style={{textAlign: 'left', padding: '0px'}}>
+                                    <div className="dropdown">
+                                        <button className="button-17 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="year-dropdown">
+                                        </button>
+                                        <ul className="dropdown-menu">
+                                        {
+                                            getAllYears(data, yearFDFields).sort().reverse().map(i=>
+                                                <li key={i}>
+                                                    <a id={i} key={i} className="dropdown-item" onClick={() => {
+                                                            setSearchParams({"year": i});
+                                                            applyfilter(i);
+                                                            document.getElementById("year-dropdown").innerHTML = "Year-"+i;
+                                                            loadBounceElement();
+                                                            unloadDrillDowns();
+                                                        }}>
+                                                        {i}
+                                                    </a>
+                                                </li>
+                                            )
+                                        }
+                                        </ul>
+                                    </div>
+                                </Col>
+                                <Col xs={6} className="right-col-headLine">
+                                    <div className="ctooltip">
+                                        <a
+                                            href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
+                                            target="_blank">
+                                            <i className="bi bi-file-earmark-check-fill"></i>
+                                        </a>
+                                        <span className="ctooltiptext top-ctooltiptext">
+                                            {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
+                                        </span>
+                                    </div>
+                                    <div className="ctooltip" id="reload">
+                                        <i className="bi bi-arrow-repeat"
+                                            onClick={() => {
+                                                // Reload from sheets from localstorage
+                                                setLoad(true);
+                                                setTimeout(()=> {
+                                                    setLoad(false);
+                                                }, 2000);
+                                                setIsDataHandlerActive(true);
+                                            }}
+                                        ></i>
+                                        <span className="ctooltiptext top-ctooltiptext">
+                                            Reload
+                                        </span>
+                                    </div>
+                                    <div className="ctooltip" id="timeAgo">
+                                        <div>
+                                            {timeAgo}
+                                        </div>
+                                        <span className="ctooltiptext top-ctooltiptext">
+                                            Sheet Updated
+                                        </span>
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row style={{padding: '0px 10px'}}>
+                                <Col xs={12} className="pageTitle">
+                                    <div>Your Fixed Deposits</div>
+                                </Col>
+                            </Row>
+                        </>
+                    }
+                    { !isMobile &&
+                        <Row className='header'>
+                            <Col xl={2} md={4} sm={4} xs={3} style={{textAlign: 'left', padding: '0px'}}>
+                                <div className="dropdown">
+                                    <button className="button-17 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="year-dropdown">
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                    {
+                                        getAllYears(data, yearFDFields).sort().reverse().map(i=>
+                                            <li key={i}>
+                                                <a id={i} key={i} className="dropdown-item" onClick={() => {
+                                                        setSearchParams({"year": i});
+                                                        applyfilter(i);
+                                                        document.getElementById("year-dropdown").innerHTML = "Year-"+i;
+                                                        loadBounceElement();
+                                                        unloadDrillDowns();
+                                                    }}>
+                                                    {i}
+                                                </a>
+                                            </li>
+                                        )
+                                    }
+                                    </ul>
                                 </div>
-                                <span className="ctooltiptext top-ctooltiptext">
-                                    Sheet Updated
-                                </span>
-                            </div>
-                        </Col>
-                    </Row>
+                            </Col>
+                            <Col xl={8} md={4} sm={4} xs={6} className="pageTitle" style={{padding: '0px'}}>
+                                <div>Your Fixed Deposits</div>
+                            </Col>
+                            <Col xl={2} md={4} sm={4} xs={3} className="right-col-headLine">
+                                <div className="ctooltip">
+                                    <a
+                                        href={fileLinkCookie.gg_filelink !== undefined ? fileLinkCookie.gg_filelink : ""}
+                                        target="_blank">
+                                        <i className="bi bi-file-earmark-check-fill"></i>
+                                    </a>
+                                    <span className="ctooltiptext top-ctooltiptext">
+                                        {(fileLinkCookie.gg_filelink !== undefined ? "Go to your sheet" : "Sheet not available") + " : " + fileNameCookie.gg_filename}
+                                    </span>
+                                </div>
+                                <div className="ctooltip" id="reload">
+                                    <i className="bi bi-arrow-repeat"
+                                        onClick={() => {
+                                            // Reload from sheets from localstorage
+                                            setLoad(true);
+                                            setTimeout(()=> {
+                                                setLoad(false);
+                                            }, 2000);
+                                            setIsDataHandlerActive(true);
+                                        }}
+                                    ></i>
+                                    <span className="ctooltiptext top-ctooltiptext">
+                                        Reload
+                                    </span>
+                                </div>
+                                <div className="ctooltip" id="timeAgo">
+                                    <div>
+                                        {timeAgo}
+                                    </div>
+                                    <span className="ctooltiptext top-ctooltiptext">
+                                        Sheet Updated
+                                    </span>
+                                </div>
+                            </Col>
+                        </Row>
+                    }
                     <Row>
                         <Col xl={6} md={6} sm={6} xs={12} id="TOTAL_INVESTED_COUNT_OVER_YEAR">
                             <DashboardSingleStateWidget
