@@ -131,13 +131,13 @@ function Layout() {
                                     <hr className='linebreak'/>
                                 </Row>
                                 <Row>
-                                    <Col xl={2} md={3} sm={3} xs={4}>
+                                    <Col xl={2} md={3} sm={3} xs={5}>
                                         <Link className="footer-button" role="button" to="/howtouse"
                                             onClick={(e) => handleLinkClick(e, "/howtouse")}>
                                             <span className="text">How to use?</span>
                                         </Link>
                                     </Col>
-                                    <Col xl={2} md={3} sm={3} xs={4}>
+                                    <Col xl={2} md={3} sm={3} xs={5}>
                                         <Link className="footer-button" role="button" to="/about"
                                             onClick={(e) => handleLinkClick(e, "/about")}>
                                             <span className="text">About</span>

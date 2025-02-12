@@ -142,7 +142,7 @@
 
 @media (max-width: 480px) {
   .titlebar {
-    height: 75px;
+    height: 83px;
   }
   .footer-div{
     padding: 20px;
@@ -152,25 +152,25 @@
     height: 40px;
   }
   .footer-ul {
-    font-size: 8px;
+    font-size: 10px;
     line-height: 18px;
   }
   .footer-ul li span {
     margin-left: 8px;
   }
   .footer-button {
-    font-size: 8px;
-    padding: 10px 15px;
+    font-size: 11px;
+    padding: 8px 12px;
   }
   .linebreak{
     height: 0.3px;
     margin: 2px 0px;
   }
   .layoutTitle {
-    font-size: 25px;
+    font-size: 30px;
   }
   .button-shadow {
-    font-size: 9px;
+    font-size: 12px;
     padding: 6px 12px;
   }
   .titlebar-button {

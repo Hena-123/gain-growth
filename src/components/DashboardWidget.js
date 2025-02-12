@@ -143,11 +143,11 @@ function DashboardWidget(props) {
                                             {
                                                 Object.keys(item).map(i => {
                                                     if(isCurrencyField(i)) {
-                                                        return (<td key={item[i]}>{numbertoCurrencyFormat(item[i])}</td>)
+                                                        return (<td key={item[Object.keys(displayData[0])[0]] + "_" + i + "_" + item[i]}>{numbertoCurrencyFormat(item[i])}</td>)
                                                     } else if(isDateField(i)) {
-                                                        return (<td key={item[i]}>{numbertoDateFormat(item[i], 'DD/MM/YYYY')}</td>)
+                                                        return (<td key={item[Object.keys(displayData[0])[0]] + "_" + i + "_" + item[i]}>{numbertoDateFormat(item[i], 'DD/MM/YYYY')}</td>)
                                                     } else {
-                                                        return (<td key={item[i]}>{item[i]}</td>)
+                                                        return (<td key={item[Object.keys(displayData[0])[0]] + "_" + i + "_" + item[i]}>{item[i]}</td>)
                                                     }
                                                 })
                                             }
