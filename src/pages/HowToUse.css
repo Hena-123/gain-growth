@@ -45,6 +45,7 @@
     border-radius: 10px;
     font-weight: bold;
     background-color: #ffffff4b;
+    font-size: 16px;
 }
 
 .release_version {
@@ -90,26 +91,26 @@
 
 @media (max-width: 480px) {
     .image {
-        padding: 20px 20px;
+        padding: 10px 10px;
     }
     .about_images #ExportDataToGithubPlugin{
-        height: 120px;
+        height: 60px;
     }
     .about_images #ExtensionAppScript{
-        height: 250px;
+        height: 60px;
         display: block;
     }
     .about_images #SaveAppScript{
-        height: 270px;
+        height: 60px;
     }
     .about_images #ShareAccess{
-        height: 400px;
+        height: 60px;
     }
     .about_images #InitialHome{
-        height: 400px;
+        height: 60px;
     }
     .about_images #SuccessHomePage{
-        height: 400px;
+        height: 60px;
     }
 }
 @media (min-width: 481px) and (max-width: 768px) {
@@ -129,4 +130,50 @@
         height: 290px;
         display: block;
     }
+}
+
+.imgModal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+    overflow: auto;
+    padding-top: 60px;
+}
+
+/* Modal Content (Image) */
+.imgModal-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    max-width: 700px;
+}
+
+#imgModal-caption {
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+/* The Close Button */
+.imgModal-close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.imgModal-close:hover,
+.imgModal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }
