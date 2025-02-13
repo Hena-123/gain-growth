@@ -1,12 +1,14 @@
 import { useEffect, useRef} from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
+import { useMediaQuery } from 'react-responsive';
 
 import './HowToUse.css';
 
 export default function HowToUse() {
 
     const sectionRef = useRef(null);
+    const isMobile = useMediaQuery({query: "(max-width: 480px)"});
 
     useEffect(() => {
         setTimeout(() => {
@@ -16,12 +18,30 @@ export default function HowToUse() {
         }, 300);
     }, [])
 
+    const openImagePopup = (e) => {
+        var imgModal = document.getElementById("imgModal");
+        var imgModalImg = document.getElementById("imgModal-img");
+        var imgModalCaption = document.getElementById("imgModal-caption");
+        imgModal.style.display = "grid";
+        imgModal.style.alignContent = "center";
+        imgModalImg.src = e.target.src;
+        imgModalCaption.innerHTML = e.target.alt;
+    }
+
     return(
         <div className='howToUse' ref={sectionRef}>
             <Container>
                 <Row>
                     <Col xl={12}>
                         <div id='howToUse'>
+                            <div id="imgModal" class="imgModal">
+                                <span class="imgModal-close" onClick={() => {
+                                    var imgModal = document.getElementById("imgModal");
+                                    imgModal.style.display = "none";
+                                }}>&times;</span>
+                                <img class="imgModal-content" id="imgModal-img"></img>
+                                <div id="imgModal-caption"></div>
+                            </div>
                             <h1>How to use Gain-Growth?</h1>
                             <ul>
                                 <li>
@@ -47,7 +67,13 @@ export default function HowToUse() {
                                                 <li>
                                                     Open Google Apps Script from Extensions as shown below
                                                     <div class='about_images'>
-                                                        <img id='ExtensionAppScript' src='./images/ExtensionAppScript.png' className="image" alt="ExtensionAppScript Not Found"></img>
+                                                        <img id='ExtensionAppScript' src='./images/ExtensionAppScript.png' className="image" alt="Extension AppScript"
+                                                        onClick={(e) => {
+                                                            if(isMobile) {
+                                                                openImagePopup(e);
+                                                            }
+                                                        }}
+                                                        ></img>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -56,7 +82,12 @@ export default function HowToUse() {
                                                 <li>
                                                     Give a name to that file like Code.gs as shown below and Save it.
                                                     <div class='about_images'>
-                                                        <img id='SaveAppScript' src='./images/SaveAppScript.png' className="image" alt="SaveAppScript Not Found"></img>
+                                                        <img id='SaveAppScript' src='./images/SaveAppScript.png' className="image" alt="Save AppScript"
+                                                        onClick={(e) => {
+                                                            if(isMobile) {
+                                                                openImagePopup(e);
+                                                            }
+                                                        }}></img>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -94,19 +125,34 @@ export default function HowToUse() {
                                         <li>
                                             Make sure your sheet has restricted access so that only you can view or modify it and copy the link.
                                             <div class='about_images'>
-                                                <img id='ShareAccess' src='./images/BluredShareAccess.png' className="image" alt="ShareAccess Not Found"></img>
+                                                <img id='ShareAccess' src='./images/BluredShareAccess.png' className="image" alt="Share Access"
+                                                onClick={(e) => {
+                                                    if(isMobile) {
+                                                        openImagePopup(e);
+                                                    }
+                                                }}></img>
                                         </div>
                                         </li>
                                         <li>
                                             Add your records in Fds and Investments Sheet and click on Export Data to Github plugin.
                                             <div class='about_images'>
-                                                <img id='ExportDataToGithubPlugin' src='./images/ExportDataToGithubPlugin.png' className="image" alt="ExportDataToGithubPlugin Not Found"></img>
+                                                <img id='ExportDataToGithubPlugin' src='./images/ExportDataToGithubPlugin.png' className="image" alt="Export Data To GithubPlugin"
+                                                onClick={(e) => {
+                                                    if(isMobile) {
+                                                        openImagePopup(e);
+                                                    }
+                                                }}></img>
                                             </div>
                                         </li>
                                         <li>
                                             Go to Home and you are asked to provide datasheet name and URL, so provide suitable name and paste that <u>link copied in step-7</u> and save it.
                                             <div class='about_images'>
-                                                <img id='InitialHome' src='./images/InitialHome.png' className="image" alt="InitialHome Not Found"></img>
+                                                <img id='InitialHome' src='./images/InitialHome.png' className="image" alt="Initial Home Page"
+                                                onClick={(e) => {
+                                                    if(isMobile) {
+                                                        openImagePopup(e);
+                                                    }
+                                                }}></img>
                                             </div>
                                         </li>
                                     </ol>
@@ -114,7 +160,12 @@ export default function HowToUse() {
                                 <li>
                                     Now you will be able to see data analytics on the Home page.
                                     <div class='about_images'>
-                                        <img id='SuccessHomePage' src='./images/SuccessHomePage.png' className="image" alt="SuccessHomePage Not Found"></img>
+                                        <img id='SuccessHomePage' src='./images/SuccessHomePage.png' className="image" alt="Success Home Page"
+                                        onClick={(e) => {
+                                            if(isMobile) {
+                                                openImagePopup(e);
+                                            }
+                                        }}></img>
                                     </div>
                                 </li>
                             </ul>

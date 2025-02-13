@@ -1,3 +1,8 @@
+const GITHUB_TOKEN = "<GITHUB_TOKEN>";
+const GITHUB_OWNER = "Hena-123";
+const GITHUB_REPO = "gain-growth";
+const GITHUB_BRANCH = "release";
+
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Export Data')
@@ -43,15 +48,16 @@ function exportDataToGithub() {
       createFileOnGitHub(spreadsheet, sheets[i], JSON.stringify(jsonArray))
     } else {
       console.log("No data available in the sheet.");
+      Browser.msgBox("No data available in the sheet.");
     }
   }
 }
 
 
 function createFileOnGitHub(spreadsheet, sheet, data) {
-  var token = '<GITHUB_TOKEN>'; // Replace with your GitHub personal access token
-  var owner = 'Hena-123';              // Replace with your GitHub username
-  var repo = 'gain-growth';               // Replace with your GitHub repository name
+  var token = GITHUB_TOKEN; // Replace with your GitHub personal access token
+  var owner = GITHUB_OWNER;              // Replace with your GitHub username
+  var repo = GITHUB_REPO;               // Replace with your GitHub repository name
   var filePath = 'sheetdata/' + spreadsheet.getId() + '/' + sheet.getName() +'-' + sheet.getSheetId() + '.json';       // Path of the file you want to create in the repo
   console.log("filePath", filePath);
 
@@ -62,7 +68,7 @@ function createFileOnGitHub(spreadsheet, sheet, data) {
   var payload = {
     "message": "[" + spreadsheet.getName() + "][" + sheet.getName() +'-' + sheet.getSheetId() + "]: File update from Google Apps Script",  // Commit message
     "content": fileContent,                                // Base64-encoded content
-    "branch": "GG-9-test",                                      // Target branch (default is 'main')
+    "branch": GITHUB_BRANCH,                                      // Target branch (default is 'main')
     "path": filePath                                        // File path in the repo
   };
 
@@ -88,7 +94,11 @@ function createFileOnGitHub(spreadsheet, sheet, data) {
 
   // Make the HTTP request to GitHub API
   var response = UrlFetchApp.fetch(url, options);
-
+  if(response.getResponseCode() == 200) {
+    Browser.msgBox("The data has been uploaded to GitHub successfully. ☺️");
+  } else {
+    Browser.msgBox("Something went wrong. ☹️");
+  }
   // Log the response (can be useful for debugging)
   Logger.log(response.getContentText());
 }
@@ -125,14 +135,3 @@ function getFileSHA(owner, repo, filePath, token) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
