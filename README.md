@@ -14,5 +14,7 @@ This project was developed with [React App](https://github.com/Hena-123/gain-gro
 - Code.gs file with shared GITHUB_TOKEN in Google App script
 - Google Sheet with Google App Script attached
 
+#### Data are stored in [Release branch of sheetdata folder](https://github.com/Hena-123/gain-growth/tree/release/sheetdata)
+
 ### Steps to UseIt
     -  npm run start
